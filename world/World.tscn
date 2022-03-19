@@ -1,0 +1,198 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://world/tile/default_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://assets/placeholder/chara.png" type="Texture" id=2]
+[ext_resource path="res://world/tile/platform_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://world/tile/hole_tileset.tres" type="TileSet" id=4]
+[ext_resource path="res://world/player/Player.gd" type="Script" id=5]
+[ext_resource path="res://world/platform/PlatformGenerator.gd" type="Script" id=6]
+[ext_resource path="res://world/Area2DPlus.gd" type="Script" id=7]
+[ext_resource path="res://world/CameraFollow.gd" type="Script" id=8]
+[ext_resource path="res://world/Jeff.gd" type="Script" id=9]
+[ext_resource path="res://world/Players.gd" type="Script" id=10]
+[ext_resource path="res://world/Grapple.gd" type="Script" id=11]
+[ext_resource path="res://assets/placeholder/rope.png" type="Texture" id=12]
+[ext_resource path="res://assets/placeholder/arrow.png" type="Texture" id=13]
+[ext_resource path="res://world/Rope.gd" type="Script" id=14]
+[ext_resource path="res://world/Arrow.gd" type="Script" id=15]
+[ext_resource path="res://world/objects/Target.tscn" type="PackedScene" id=16]
+[ext_resource path="res://world/objects/Movable.tscn" type="PackedScene" id=17]
+[ext_resource path="res://world/objects/Swing.tscn" type="PackedScene" id=18]
+[ext_resource path="res://world/Ed.gd" type="Script" id=19]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24, 24 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 3 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 23, 3.5 )
+
+[node name="World" type="Node"]
+
+[node name="Tiles" type="Node2D" parent="."]
+position = Vector2( -15, 0 )
+
+[node name="Solid" type="TileMap" parent="Tiles"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 48, 48 )
+cell_quadrant_size = 24
+cell_custom_transform = Transform2D( 48, 0, 0, 48, 0, 0 )
+format = 1
+tile_data = PoolIntArray( -1900544, 0, 0, -1900531, 0, 0, -1835008, 0, 0, -1834995, 0, 0, -1769472, 0, 0, -1769459, 0, 0, -1703936, 0, 0, -1703923, 0, 0, -1638400, 0, 0, -1638387, 0, 0, -1572864, 0, 0, -1572851, 0, 0, -1507328, 0, 0, -1507315, 0, 0, -1441792, 0, 0, -1441779, 0, 0, -1376256, 0, 0, -1376243, 0, 0, -1310720, 0, 0, -1310707, 0, 0, -1245184, 0, 0, -1245171, 0, 0, -1179648, 0, 0, -1179635, 0, 0, -1114112, 0, 0, -1114099, 0, 0, -1048576, 0, 0, -1048563, 0, 0, -983040, 0, 0, -983027, 0, 0, -917504, 0, 0, -917491, 0, 0, -851968, 0, 0, -851955, 0, 0, -786432, 0, 0, -786419, 0, 0, -720896, 0, 0, -720883, 0, 0, -655360, 0, 0, -655347, 0, 0, -589824, 0, 0, -589811, 0, 0, -524288, 0, 0, -524275, 0, 0, -458752, 0, 0, -458739, 0, 0, -393216, 0, 0, -393203, 0, 0, -327680, 0, 0, -327667, 0, 0, -262144, 0, 0, -262131, 0, 0, -196608, 0, 0, -196595, 0, 0, -131072, 0, 0, -131059, 0, 0, -65536, 0, 0, -65523, 0, 0, 0, 0, 0, 13, 0, 0, 65536, 0, 0, 65549, 0, 0, 131072, 0, 0, 131085, 0, 0, 196608, 0, 0, 196621, 0, 0, 262144, 0, 0, 262157, 0, 0, 327680, 0, 0, 327693, 0, 0, 393216, 0, 0, 393229, 0, 0, 458752, 0, 0, 458763, -1610612736, 0, 458765, 0, 0, 524288, 0, 0, 524301, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0 )
+
+[node name="PlatformGenerator" type="Node2D" parent="Tiles"]
+script = ExtResource( 6 )
+
+[node name="PlatformTile" type="TileMap" parent="Tiles/PlatformGenerator"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 48, 48 )
+cell_quadrant_size = 24
+cell_custom_transform = Transform2D( 48, 0, 0, 48, 0, 0 )
+format = 1
+tile_data = PoolIntArray( -1507327, 0, 0, -1507326, 0, 0, -1507325, 0, 0, -1507324, 0, 0, -1507323, 0, 0, -1507322, 0, 0, -1507321, 0, 0, -1507320, 0, 0, -1507319, 0, 0, -1507318, 0, 0, -1507317, 0, 0, -1507316, 0, 0, -1048568, 0, 0, -1048567, 0, 0, -1048566, 0, 0, -1048565, 0, 0, -1048564, 0, 0, -655359, 0, 0, -655358, 0, 0, -655357, 0, 0, -655356, 0, 0, -655355, 0, 0, -655354, 0, 0, -655353, 0, 0, -655352, 0, 0, -655351, 0, 0, -655350, 0, 0, -655349, 0, 0, -655348, 0, 0, -458749, 0, 0, -458748, 0, 0, -458747, 0, 0, -327675, 0, 0, -327674, 0, 0, -327673, 0, 0, -327672, 0, 0, -196600, 0, 0, -196599, 0, 0, -196598, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 458755, 0, 0 )
+
+[node name="Hole" type="TileMap" parent="Tiles"]
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 48, 48 )
+cell_quadrant_size = 24
+cell_custom_transform = Transform2D( 48, 0, 0, 48, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 196620, -1610612736, 0, 262156, -1610612736, 0, 327692, -1610612736, 0, 393228, -1610612736, 0, 458764, -1610612736, 0, 524297, 1610612736, 0, 524298, 1610612736, 0, 524299, 1610612736, 0 )
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Target" parent="Objects" instance=ExtResource( 16 )]
+position = Vector2( 152, 115 )
+motion/sync_to_physics = true
+
+[node name="Movable" parent="Objects" instance=ExtResource( 17 )]
+position = Vector2( 527, 115 )
+
+[node name="Swing" parent="Objects" instance=ExtResource( 18 )]
+position = Vector2( 213, 115 )
+
+[node name="Swing2" parent="Objects" instance=ExtResource( 18 )]
+position = Vector2( 212, -703 )
+
+[node name="Swing3" parent="Objects" instance=ExtResource( 18 )]
+position = Vector2( 453, -1018 )
+
+[node name="Players" type="Node2D" parent="."]
+script = ExtResource( 10 )
+
+[node name="CameraFollow" type="Camera2D" parent="Players"]
+position = Vector2( 322, 269 )
+current = true
+limit_left = 0
+limit_right = 640
+limit_bottom = 480
+limit_smoothed = true
+script = ExtResource( 8 )
+follow_target_path = NodePath("../Jeff")
+
+[node name="Jeff" type="KinematicBody2D" parent="Players"]
+position = Vector2( 63, 403 )
+collision_layer = 2
+collision_mask = 257
+script = ExtResource( 9 )
+is_controlled = true
+infinite_inertia = null
+
+[node name="Chara" type="Sprite" parent="Players/Jeff"]
+self_modulate = Color( 1, 0.819608, 0.509804, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Jeff"]
+shape = SubResource( 1 )
+
+[node name="PlatformDetection" type="Area2D" parent="Players/Jeff"]
+position = Vector2( 0, 24 )
+collision_layer = 256
+collision_mask = 256
+input_pickable = false
+monitorable = false
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Jeff/PlatformDetection"]
+shape = SubResource( 2 )
+
+[node name="Grapple" type="Node2D" parent="Players/Jeff"]
+script = ExtResource( 11 )
+max_arrow_dist = 240.0
+
+[node name="Rope" type="Sprite" parent="Players/Jeff/Grapple"]
+texture = ExtResource( 12 )
+centered = false
+offset = Vector2( 0, -4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 100, 8 )
+script = ExtResource( 14 )
+target_path = NodePath("../Arrow")
+
+[node name="Arrow" type="Area2D" parent="Players/Jeff/Grapple"]
+collision_mask = 9
+script = ExtResource( 15 )
+
+[node name="Sprite" type="Sprite" parent="Players/Jeff/Grapple/Arrow"]
+texture = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Jeff/Grapple/Arrow"]
+position = Vector2( 1, 1.5 )
+shape = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="Players/Jeff/Grapple"]
+
+[node name="Ed" type="KinematicBody2D" parent="Players"]
+position = Vector2( 176, 403 )
+collision_layer = 2
+collision_mask = 257
+script = ExtResource( 19 )
+
+[node name="Chara" type="Sprite" parent="Players/Ed"]
+modulate = Color( 0.466667, 0.627451, 0.882353, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Ed"]
+shape = SubResource( 1 )
+
+[node name="PlatformDetection" type="Area2D" parent="Players/Ed"]
+position = Vector2( 0, 24 )
+collision_layer = 256
+collision_mask = 256
+input_pickable = false
+monitorable = false
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Ed/PlatformDetection"]
+shape = SubResource( 2 )
+
+[node name="Jack" type="KinematicBody2D" parent="Players"]
+position = Vector2( 118, 407 )
+collision_layer = 2
+collision_mask = 257
+script = ExtResource( 5 )
+order = 2
+
+[node name="Chara" type="Sprite" parent="Players/Jack"]
+self_modulate = Color( 0.509804, 1, 0.564706, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Jack"]
+shape = SubResource( 1 )
+
+[node name="PlatformDetection" type="Area2D" parent="Players/Jack"]
+position = Vector2( 0, 24 )
+collision_layer = 256
+collision_mask = 256
+input_pickable = false
+monitorable = false
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Jack/PlatformDetection"]
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="Players/Jeff/Grapple/Arrow" to="Players/Jeff/Grapple/Arrow" method="_on_Arrow_body_entered"]
+[connection signal="hit_something" from="Players/Jeff/Grapple/Arrow" to="Players/Jeff/Grapple" method="_on_Arrow_hit_something"]
+[connection signal="tween_all_completed" from="Players/Jeff/Grapple/Tween" to="Players/Jeff/Grapple" method="_on_Tween_tween_all_completed"]
