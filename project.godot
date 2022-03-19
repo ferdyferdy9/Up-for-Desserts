@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Area2DPlus",
 "language": "GDScript",
-"path": "res://world/Area2DPlus.gd"
+"path": "res://world/util/Area2DPlus.gd"
 }, {
 "base": "Camera2D",
 "class": "CameraFollow",
 "language": "GDScript",
-"path": "res://world/CameraFollow.gd"
+"path": "res://world/util/CameraFollow.gd"
 } ]
 _global_script_class_icons={
 "Area2DPlus": "",
@@ -27,6 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Three Friends and Cake Tower"
+run/main_scene="res://world/World.tscn"
 config/icon="res://icon.png"
 
 [display]

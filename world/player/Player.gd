@@ -6,7 +6,7 @@ export(int) var order = 0
 export(float) var move_accel:float = 30
 export(float) var move_deaccel:float = 50
 export(float) var max_move_speed:float = 250
-export(float) var jump_strength:float = 900
+export(float) var jump_strength:float = 900 * 0.775
 export(float) var drop_offset:float = 3
 export(float) var drop_timer:float = 0.1
 
@@ -36,6 +36,11 @@ func is_on_platform() -> bool:
 
 func _physics_process(delta: float) -> void:
 	update_physics_platformer(delta)
+	late_update()
+
+
+func late_update() -> void:
+	pass
 
 
 func jump() -> void:

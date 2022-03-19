@@ -16,14 +16,15 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if has_shot:
-		if arrow.position.length() > max_arrow_dist:
-			reset()
 	if is_swing:
 		arrow.global_position = _swing_target.global_position
-		if get_parent().is_controlled and Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("attack"):
+		var is_btn_jump:bool = Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("attack")
+		if get_parent().is_controlled and is_btn_jump:
 			get_parent().jump()
 			_swing_target.player = null
+			reset()
+	elif has_shot:
+		if arrow.position.length() > max_arrow_dist:
 			reset()
 
 
@@ -51,9 +52,7 @@ func reset():
 
 
 func _on_Arrow_hit_something(body:Node) -> void:
-	if not has_shot:
-		return
-	elif tween.is_active():
+	if is_swing or not has_shot or tween.is_active():
 		return
 	
 	if body.is_in_group("Target"):

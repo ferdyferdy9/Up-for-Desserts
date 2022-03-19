@@ -4,12 +4,14 @@ export(Vector2) var hold_offset = Vector2(0, -48)
 
 onready var grab_area = $GrabArea
 
-var flying_obj_scene = preload("res://world/FlyingObj.tscn")
+var flying_obj_scene = preload("res://world/player/obj/FlyingObj.tscn")
 var grabbed_body:Node2D
 var thrown_obj:Array
 
 
 func _process(delta: float) -> void:
+	if !is_instance_valid(grabbed_body):
+		grabbed_body = null
 	if is_controlled:
 		var isThrowDown:bool
 		isThrowDown = isThrowDown or Input.is_action_just_pressed("jump") 
@@ -31,7 +33,11 @@ func _process(delta: float) -> void:
 		grab_area.scale.x = 1
 	elif facing_dir.x < 0:
 		grab_area.scale.x = -1
-	
+
+
+func _physics_process(delta:float) -> void:
+	if !is_instance_valid(grabbed_body):
+		grabbed_body = null
 	if grabbed_body:
 		grabbed_body.global_position = global_position + hold_offset
 
