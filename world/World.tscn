@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://world/tile/default_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/placeholder/chara.png" type="Texture" id=2]
@@ -29,10 +29,14 @@ extents = Vector2( 24, 3 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 23, 3.5 )
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 38.5, 24.5 )
+
 [node name="World" type="Node"]
 
 [node name="Tiles" type="Node2D" parent="."]
 position = Vector2( -15, 0 )
+z_index = -10
 
 [node name="Solid" type="TileMap" parent="Tiles"]
 tile_set = ExtResource( 1 )
@@ -92,13 +96,12 @@ limit_smoothed = true
 script = ExtResource( 8 )
 follow_target_path = NodePath("../Jeff")
 
-[node name="Jeff" type="KinematicBody2D" parent="Players"]
+[node name="Jeff" type="KinematicBody2D" parent="Players" groups=["Pickable"]]
 position = Vector2( 63, 403 )
 collision_layer = 2
 collision_mask = 257
 script = ExtResource( 9 )
 is_controlled = true
-infinite_inertia = null
 
 [node name="Chara" type="Sprite" parent="Players/Jeff"]
 self_modulate = Color( 1, 0.819608, 0.509804, 1 )
@@ -144,6 +147,31 @@ shape = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="Players/Jeff/Grapple"]
 
+[node name="Jack" type="KinematicBody2D" parent="Players" groups=["Pickable"]]
+position = Vector2( 118, 407 )
+collision_layer = 2
+collision_mask = 257
+script = ExtResource( 5 )
+order = 2
+
+[node name="Chara" type="Sprite" parent="Players/Jack"]
+self_modulate = Color( 0.509804, 1, 0.564706, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Jack"]
+shape = SubResource( 1 )
+
+[node name="PlatformDetection" type="Area2D" parent="Players/Jack"]
+position = Vector2( 0, 24 )
+collision_layer = 256
+collision_mask = 256
+input_pickable = false
+monitorable = false
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Jack/PlatformDetection"]
+shape = SubResource( 2 )
+
 [node name="Ed" type="KinematicBody2D" parent="Players"]
 position = Vector2( 176, 403 )
 collision_layer = 2
@@ -168,30 +196,13 @@ script = ExtResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Ed/PlatformDetection"]
 shape = SubResource( 2 )
 
-[node name="Jack" type="KinematicBody2D" parent="Players"]
-position = Vector2( 118, 407 )
-collision_layer = 2
-collision_mask = 257
-script = ExtResource( 5 )
-order = 2
-
-[node name="Chara" type="Sprite" parent="Players/Jack"]
-self_modulate = Color( 0.509804, 1, 0.564706, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Jack"]
-shape = SubResource( 1 )
-
-[node name="PlatformDetection" type="Area2D" parent="Players/Jack"]
-position = Vector2( 0, 24 )
-collision_layer = 256
-collision_mask = 256
-input_pickable = false
+[node name="GrabArea" type="Area2D" parent="Players/Ed"]
+collision_mask = 9
 monitorable = false
-script = ExtResource( 7 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Jack/PlatformDetection"]
-shape = SubResource( 2 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Ed/GrabArea"]
+position = Vector2( 21.5, 1.5 )
+shape = SubResource( 4 )
 
 [connection signal="body_entered" from="Players/Jeff/Grapple/Arrow" to="Players/Jeff/Grapple/Arrow" method="_on_Arrow_body_entered"]
 [connection signal="hit_something" from="Players/Jeff/Grapple/Arrow" to="Players/Jeff/Grapple" method="_on_Arrow_hit_something"]
