@@ -15,6 +15,12 @@ func _process(delta: float) -> void:
 	if _rock:
 		_rock.modulate = modulate
 	
+	if is_controlled and Input.is_action_just_pressed("jump"):
+		if _ed.grabbed_body == self:
+			_ed.grabbed_body = null
+			_ed.remove_collision_exception_with(self)
+			jump()
+	
 	if is_controlled and Input.is_action_just_pressed("attack"):
 		if !is_rock:
 			_rock = slime_rock_scene.instance()

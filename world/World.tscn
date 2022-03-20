@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://world/tile/default_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/placeholder/chara.png" type="Texture" id=2]
 [ext_resource path="res://world/tile/platform_tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://world/player/Jack.gd" type="Script" id=4]
+[ext_resource path="res://world/objects/WindCurrent.tscn" type="PackedScene" id=5]
 [ext_resource path="res://world/platform/PlatformGenerator.gd" type="Script" id=6]
 [ext_resource path="res://world/util/Area2DPlus.gd" type="Script" id=7]
 [ext_resource path="res://world/util/CameraFollow.gd" type="Script" id=8]
@@ -18,6 +19,9 @@
 [ext_resource path="res://world/objects/Movable.tscn" type="PackedScene" id=17]
 [ext_resource path="res://world/objects/Swing.tscn" type="PackedScene" id=18]
 [ext_resource path="res://world/player/Ed.gd" type="Script" id=19]
+[ext_resource path="res://world/objects/Breakable.tscn" type="PackedScene" id=20]
+[ext_resource path="res://world/objects/Switch.tscn" type="PackedScene" id=21]
+[ext_resource path="res://world/objects/Cannon.tscn" type="PackedScene" id=22]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 24 )
@@ -47,9 +51,36 @@ margin_left = 47.0
 margin_top = 164.0
 margin_right = 323.0
 margin_bottom = 251.0
-text = "Arrow + Target = pull self
-Arrow + Pin = Swing
-Arrow + Crate = pull crate"
+text = "      + Target = pull self
+      + Pin = Swing
+      + Crate = pull crate"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Tutorial/Label"]
+margin_left = 4.0
+margin_top = 10.0
+margin_right = 52.0
+margin_bottom = 50.0
+rect_rotation = -45.2556
+rect_scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 13 )
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Tutorial/Label"]
+margin_left = 3.99998
+margin_top = 42.0
+margin_right = 52.0
+margin_bottom = 82.0
+rect_rotation = -45.2556
+rect_scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 13 )
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Tutorial/Label"]
+margin_left = 4.0
+margin_top = 73.0
+margin_right = 52.0
+margin_bottom = 113.0
+rect_rotation = -45.2556
+rect_scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 13 )
 
 [node name="Label2" type="Label" parent="CanvasLayer/Tutorial"]
 modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
@@ -57,10 +88,19 @@ margin_left = 356.0
 margin_top = 182.0
 margin_right = 600.0
 margin_bottom = 362.0
-text = "- Orange shoot arrows
+text = "- Orange shoot
 - Green turn into rock
 - Blue can pickup stuff
 "
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Tutorial/Label2"]
+margin_left = 162.0
+margin_top = 15.0
+margin_right = 210.0
+margin_bottom = 55.0
+rect_rotation = -45.2556
+rect_scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 13 )
 
 [node name="Label3" type="Label" parent="CanvasLayer/Tutorial"]
 modulate = Color( 0.796078, 0.796078, 0.796078, 1 )
@@ -88,6 +128,15 @@ text = "Z = Jump
 X = Ability
 C = Switch"
 
+[node name="Label6" type="Label" parent="CanvasLayer/Tutorial"]
+modulate = Color( 0.756863, 0.756863, 0.756863, 1 )
+margin_left = 241.0
+margin_top = 266.0
+margin_right = 422.0
+margin_bottom = 322.0
+text = "This is breakable
+using rock"
+
 [node name="Tiles" type="Node2D" parent="."]
 position = Vector2( -15, 0 )
 z_index = -10
@@ -109,25 +158,53 @@ cell_size = Vector2( 48, 48 )
 cell_quadrant_size = 24
 cell_custom_transform = Transform2D( 48, 0, 0, 48, 0, 0 )
 format = 1
-tile_data = PoolIntArray( -1507327, 0, 0, -1507326, 0, 0, -1507325, 0, 0, -1507324, 0, 0, -1507323, 0, 0, -1507322, 0, 0, -1507321, 0, 0, -1507320, 0, 0, -1507319, 0, 0, -1507318, 0, 0, -1507317, 0, 0, -1507316, 0, 0, -1376251, 0, 0, -1376250, 0, 0, -1179640, 0, 0, -1179639, 0, 0, -1179638, 0, 0, -1048568, 0, 0, -1048567, 0, 0, -1048566, 0, 0, -1048565, 0, 0, -1048564, 0, 0, -786423, 0, 0, -786422, 0, 0, -655359, 0, 0, -655358, 0, 0, -655357, 0, 0, -655356, 0, 0, -655355, 0, 0, -655354, 0, 0, -655353, 0, 0, -655352, 0, 0, -655351, 0, 0, -655350, 0, 0, -655349, 0, 0, -655348, 0, 0, -524286, 0, 0, -458749, 0, 0, -458748, 0, 0, -458747, 0, 0, -327675, 0, 0, -327674, 0, 0, -327673, 0, 0, -327672, 0, 0, -196600, 0, 0, -196599, 0, 0, -196598, 0, 0, -131060, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 65542, 0, 0, 131079, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 458755, 0, 0 )
+tile_data = PoolIntArray( -1507327, 0, 0, -1507326, 0, 0, -1507325, 0, 0, -1507324, 0, 0, -1507323, 0, 0, -1507322, 0, 0, -1507321, 0, 0, -1507320, 0, 0, -1507319, 0, 0, -1507318, 0, 0, -1507317, 0, 0, -1507316, 0, 0, -1376251, 0, 0, -1376250, 0, 0, -1179647, 0, 0, -1179646, 0, 0, -1179645, 0, 0, -1179644, 0, 0, -1179643, 0, 0, -1179642, 0, 0, -1179641, 0, 0, -1179640, 0, 0, -1179639, 0, 0, -1179638, 0, 0, -1048575, 0, 0, -1048574, 0, 0, -1048568, 0, 0, -1048567, 0, 0, -1048566, 0, 0, -1048565, 0, 0, -1048564, 0, 0, -917503, 0, 0, -917502, 0, 0, -786431, 0, 0, -786430, 0, 0, -786423, 0, 0, -786422, 0, 0, -655359, 0, 0, -655358, 0, 0, -655357, 0, 0, -655356, 0, 0, -655355, 0, 0, -655354, 0, 0, -655353, 0, 0, -655352, 0, 0, -655351, 0, 0, -655350, 0, 0, -655349, 0, 0, -655348, 0, 0, -524286, 0, 0, -458749, 0, 0, -458748, 0, 0, -458747, 0, 0, -327675, 0, 0, -327674, 0, 0, -327673, 0, 0, -327672, 0, 0, -196600, 0, 0, -196599, 0, 0, -196598, 0, 0, -131060, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 65542, 0, 0, 131079, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 458755, 0, 0 )
 
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="Target" parent="Objects" instance=ExtResource( 16 )]
-position = Vector2( 152, 115 )
+position = Vector2( 298, 83 )
 motion/sync_to_physics = true
 
 [node name="Movable" parent="Objects" instance=ExtResource( 17 )]
 position = Vector2( 527, 115 )
 
 [node name="Swing" parent="Objects" instance=ExtResource( 18 )]
-position = Vector2( 213, 115 )
+position = Vector2( 209, 118 )
 
 [node name="Swing2" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( 212, -703 )
 
 [node name="Swing3" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( 453, -1018 )
+
+[node name="WindCurrent" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( 173, -16 )
+
+[node name="Breakable" parent="Objects" instance=ExtResource( 20 )]
+position = Vector2( 298, 405 )
+
+[node name="Breakable2" parent="Objects" instance=ExtResource( 20 )]
+position = Vector2( 292, 345 )
+
+[node name="Breakable3" parent="Objects" instance=ExtResource( 20 )]
+position = Vector2( 420, 400 )
+
+[node name="Breakable4" parent="Objects" instance=ExtResource( 20 )]
+position = Vector2( 352, 346 )
+
+[node name="Breakable5" parent="Objects" instance=ExtResource( 20 )]
+position = Vector2( 357, 408 )
+
+[node name="Breakable6" parent="Objects" instance=ExtResource( 20 )]
+position = Vector2( 419, 336 )
+
+[node name="Switch" parent="Objects" instance=ExtResource( 21 )]
+position = Vector2( 597, -26 )
+target_paths = [ NodePath("../WindCurrent") ]
+
+[node name="Cannon" parent="Objects" instance=ExtResource( 22 )]
+position = Vector2( 585, -793 )
 
 [node name="Players" type="Node2D" parent="."]
 script = ExtResource( 10 )
@@ -142,8 +219,8 @@ limit_smoothed = true
 script = ExtResource( 8 )
 follow_target_path = NodePath("../Jeff")
 
-[node name="Jeff" type="KinematicBody2D" parent="Players" groups=["Pickable"]]
-position = Vector2( 63, 403 )
+[node name="Jeff" type="KinematicBody2D" parent="Players" groups=["Jeff", "Pickable", "Player"]]
+position = Vector2( 67, 388 )
 collision_layer = 2
 collision_mask = 257
 script = ExtResource( 9 )
@@ -169,7 +246,7 @@ shape = SubResource( 2 )
 
 [node name="Grapple" type="Node2D" parent="Players/Jeff"]
 script = ExtResource( 11 )
-max_arrow_dist = 240.0
+max_arrow_dist = 320.0
 
 [node name="Rope" type="Sprite" parent="Players/Jeff/Grapple"]
 texture = ExtResource( 12 )
@@ -193,8 +270,8 @@ shape = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="Players/Jeff/Grapple"]
 
-[node name="Jack" type="KinematicBody2D" parent="Players" groups=["Pickable"]]
-position = Vector2( 118, 403 )
+[node name="Jack" type="KinematicBody2D" parent="Players" groups=["Jack", "Pickable", "Player"]]
+position = Vector2( 143, 394 )
 collision_layer = 2
 collision_mask = 257
 script = ExtResource( 4 )
@@ -217,9 +294,9 @@ script = ExtResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Jack/PlatformDetection"]
 shape = SubResource( 2 )
 
-[node name="Ed" type="KinematicBody2D" parent="Players" groups=["Ed"]]
+[node name="Ed" type="KinematicBody2D" parent="Players" groups=["Ed", "Player"]]
 process_priority = 1
-position = Vector2( 176, 403 )
+position = Vector2( 208, 395 )
 collision_layer = 2
 collision_mask = 257
 script = ExtResource( 19 )
@@ -249,6 +326,11 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Players/Ed/GrabArea"]
 position = Vector2( 21.5, 1.5 )
 shape = SubResource( 4 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Players/Ed"]
+enabled = true
+cast_to = Vector2( 48, 0 )
+collision_mask = 11
 
 [connection signal="body_entered" from="Players/Jeff/Grapple/Arrow" to="Players/Jeff/Grapple/Arrow" method="_on_Arrow_body_entered"]
 [connection signal="hit_something" from="Players/Jeff/Grapple/Arrow" to="Players/Jeff/Grapple" method="_on_Arrow_hit_something"]

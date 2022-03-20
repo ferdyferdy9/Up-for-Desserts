@@ -36,6 +36,11 @@ func is_on_platform() -> bool:
 
 func _physics_process(delta: float) -> void:
 	update_physics_platformer(delta)
+	
+	for i in range(get_slide_count()):
+		if get_slide_collision(i).collider.is_in_group("Hazard"):
+			get_tree().reload_current_scene()
+	
 	late_update()
 
 

@@ -3,6 +3,7 @@ extends "res://world/player/Player.gd"
 export(Vector2) var hold_offset = Vector2(0, -48)
 
 onready var grab_area = $GrabArea
+onready var ray_cast = $RayCast2D
 
 var flying_obj_scene = preload("res://world/player/obj/FlyingObj.tscn")
 var grabbed_body:Node2D
@@ -26,19 +27,31 @@ func _process(delta: float) -> void:
 				if grabbed_body:
 					grabbed_body.set_physics_process(false)
 					grabbed_body.add_collision_exception_with(self)
-			else:
+			elif can_throw():
 				create_thrown_body(Vector2(facing_dir.x, 0))
 	
 	if facing_dir.x > 0:
 		grab_area.scale.x = 1
+		ray_cast.scale.x = 1
 	elif facing_dir.x < 0:
 		grab_area.scale.x = -1
+		ray_cast.scale.x = -1
 
 
 func _physics_process(delta:float) -> void:
 	if !is_instance_valid(grabbed_body):
 		grabbed_body = null
 	if grabbed_body:
+		if grabbed_body.is_in_group("Jeff"):
+			if grabbed_body.grapple.is_swing:
+				if is_controlled:
+					grabbed_body.apply_input(get_desired(delta), delta)
+					if Input.is_action_just_pressed("jump"):
+						grabbed_body.set_physics_process(true)
+						grabbed_body.remove_collision_exception_with(self)
+						grabbed_body = null
+						jump()
+				return
 		grabbed_body.global_position = global_position + hold_offset
 
 
@@ -61,10 +74,22 @@ func _on_throw_hit(body) -> void:
 	thrown_obj.erase(body)
 
 
+func can_throw():
+	if ray_cast.is_colliding():
+		var b = ray_cast.get_collider()
+		if b.is_in_group("Player") and grabbed_body.is_in_group("Player"):
+			return true
+		if b != self and not b in thrown_obj and b != grabbed_body:
+			return false
+	return true
+
+
 func get_closest():
 	var bodies = grab_area.get_overlapping_bodies()
 	var closest = null
 	for b in bodies:
+		if b == self:
+			continue
 		if !b.is_in_group("Pickable"):
 			continue
 		if b in thrown_obj:

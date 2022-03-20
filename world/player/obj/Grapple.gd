@@ -8,7 +8,11 @@ onready var tween = $Tween
 
 var has_shot:bool
 var is_swing:bool
+var is_switch:bool
 var _swing_target:Node2D
+var _switch_target:Node2D
+onready var _ed = get_tree().get_nodes_in_group("Ed")[0]
+onready var parent = get_parent()
 
 
 func _ready() -> void:
@@ -16,6 +20,19 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if is_swing or tween.is_active():
+		if _ed.grabbed_body == parent:
+			_ed.global_position = parent.global_position - _ed.hold_offset
+			parent.set_physics_process(true)
+	
+	if is_switch:
+		arrow.global_position = _switch_target.global_position
+		var is_btn_jump:bool = Input.is_action_just_pressed("attack")
+		if get_parent().is_controlled and is_btn_jump:
+			_switch_target.deactivate()
+			_switch_target = null
+			reset()
+	
 	if is_swing:
 		arrow.global_position = _swing_target.global_position
 		var is_btn_jump:bool = Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("attack")
@@ -25,6 +42,9 @@ func _process(delta: float) -> void:
 			reset()
 	elif has_shot:
 		if arrow.position.length() > max_arrow_dist:
+			if is_switch:
+				_switch_target.deactivate()
+				_switch_target = null
 			reset()
 
 
@@ -32,8 +52,11 @@ func shoot():
 	if has_shot:
 		return
 	
-	show()
 	var dir:Vector2 = get_parent().facing_dir
+	if dir.y > 0:
+		dir.y = 0
+	
+	show()
 	if dir.y != 0:
 		dir.x = 0
 	arrow.is_active = true
@@ -49,10 +72,14 @@ func reset():
 	arrow.is_active = false
 	has_shot = false
 	is_swing = false
+	is_switch = false
 
 
 func _on_Arrow_hit_something(body:Node) -> void:
-	if is_swing or not has_shot or tween.is_active():
+	if is_switch or is_swing or not has_shot or tween.is_active():
+		return
+	
+	if body == _ed.grabbed_body:
 		return
 	
 	if body.is_in_group("Target"):
@@ -68,6 +95,12 @@ func _on_Arrow_hit_something(body:Node) -> void:
 		body.player = get_parent()
 		_swing_target = body
 		is_swing = true
+	elif body.is_in_group("Switch"):
+		arrow.dir = Vector2.ZERO
+		arrow.is_active = false
+		body.activate()
+		_switch_target = body
+		is_switch = true
 	else:
 		reset()
 
