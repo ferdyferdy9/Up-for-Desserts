@@ -1,0 +1,434 @@
+[gd_scene load_steps=44 format=2]
+
+[ext_resource path="res://world/player/Jeff.gd" type="Script" id=1]
+[ext_resource path="res://world/player/obj/Grapple.gd" type="Script" id=2]
+[ext_resource path="res://world/player/obj/Rope.gd" type="Script" id=3]
+[ext_resource path="res://assets/objects/arrow.png" type="Texture" id=4]
+[ext_resource path="res://assets/objects/rope.png" type="Texture" id=5]
+[ext_resource path="res://assets/characters/archer-stand.png" type="Texture" id=6]
+[ext_resource path="res://world/util/Area2DPlus.gd" type="Script" id=7]
+[ext_resource path="res://world/player/obj/Arrow.gd" type="Script" id=8]
+[ext_resource path="res://assets/characters/archer-walk_0000.png" type="Texture" id=9]
+[ext_resource path="res://assets/characters/archer-walk_0001.png" type="Texture" id=10]
+[ext_resource path="res://assets/characters/archer-walk_0002.png" type="Texture" id=11]
+[ext_resource path="res://assets/characters/archer-walk_0004.png" type="Texture" id=12]
+[ext_resource path="res://assets/characters/archer-walk_0005.png" type="Texture" id=13]
+[ext_resource path="res://assets/characters/archer-walk_0003.png" type="Texture" id=14]
+[ext_resource path="res://assets/characters/archer-swing.png" type="Texture" id=15]
+[ext_resource path="res://assets/characters/archer-thrown_0003.png" type="Texture" id=16]
+[ext_resource path="res://assets/characters/archer-thrown_0002.png" type="Texture" id=17]
+[ext_resource path="res://assets/characters/archer-thrown_0001.png" type="Texture" id=18]
+[ext_resource path="res://assets/characters/archer-thrown_0000.png" type="Texture" id=19]
+[ext_resource path="res://assets/characters/archer-shoot-up_0001.png" type="Texture" id=20]
+[ext_resource path="res://assets/characters/archer-shoot-up_0000.png" type="Texture" id=21]
+[ext_resource path="res://assets/characters/archer-shoot-side_0000.png" type="Texture" id=22]
+[ext_resource path="res://assets/characters/archer-shoot-side_0001.png" type="Texture" id=23]
+[ext_resource path="res://assets/characters/archer-fall.png" type="Texture" id=24]
+[ext_resource path="res://assets/characters/archer-jump.png" type="Texture" id=25]
+[ext_resource path="res://assets/characters/archer-hurt-grabbed.png" type="Texture" id=26]
+[ext_resource path="res://assets/characters/archer-sidepulled.png" type="Texture" id=27]
+[ext_resource path="res://assets/sfx/shoot arrow.wav" type="AudioStream" id=28]
+[ext_resource path="res://assets/sfx/being pulled.wav" type="AudioStream" id=29]
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 17, 18 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 3 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 14, 3.5 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Grapple:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 5, 8 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "fall"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 24 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Grapple:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "hurt_grabbed"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 26 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Grapple:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Grapple:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 8 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "jump"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 25 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Grapple:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "shoot_side"
+length = 0.166667
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 22 ), ExtResource( 23 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Grapple:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 9 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "shoot_up"
+length = 0.166667
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 21 ), ExtResource( 20 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Grapple:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 4 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "side_pulled"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 27 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Grapple:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 6 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "swing"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 15 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Grapple:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -19 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "thrown"
+length = 0.333333
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 19 ), ExtResource( 18 ), ExtResource( 17 ), ExtResource( 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Grapple:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -3 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "walk"
+length = 0.5
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 13 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Grapple:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 9 ) ]
+}
+
+[node name="Jeff" type="KinematicBody2D" groups=["Jeff", "Pickable", "Player"]]
+position = Vector2( 67, 388 )
+collision_layer = 2
+collision_mask = 257
+script = ExtResource( 1 )
+is_controlled = true
+
+[node name="Chara" type="Sprite" parent="."]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2, 6 )
+shape = SubResource( 15 )
+
+[node name="PlatformDetection" type="Area2D" parent="."]
+position = Vector2( 0, 24 )
+collision_layer = 256
+collision_mask = 256
+input_pickable = false
+monitorable = false
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformDetection"]
+shape = SubResource( 2 )
+
+[node name="Grapple" type="Node2D" parent="."]
+show_behind_parent = true
+position = Vector2( 5, 8 )
+z_index = -20
+script = ExtResource( 2 )
+max_arrow_dist = 320.0
+
+[node name="Rope" type="Sprite" parent="Grapple"]
+texture = ExtResource( 5 )
+centered = false
+offset = Vector2( 0, -4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 100, 8 )
+script = ExtResource( 3 )
+target_path = NodePath("../Arrow")
+
+[node name="Arrow" type="Area2D" parent="Grapple"]
+collision_mask = 9
+script = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="Grapple/Arrow"]
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grapple/Arrow"]
+position = Vector2( 0, 2 )
+shape = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="Grapple"]
+
+[node name="ShotDelayTimer" type="Timer" parent="Grapple"]
+wait_time = 0.1
+one_shot = true
+
+[node name="ArrowSFX" type="AudioStreamPlayer" parent="Grapple"]
+stream = ExtResource( 28 )
+bus = "SFX"
+
+[node name="PulledSFX" type="AudioStreamPlayer" parent="Grapple"]
+stream = ExtResource( 29 )
+bus = "SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
+anims/fall = SubResource( 11 )
+anims/hurt_grabbed = SubResource( 13 )
+anims/idle = SubResource( 4 )
+anims/jump = SubResource( 12 )
+anims/shoot_side = SubResource( 10 )
+anims/shoot_up = SubResource( 9 )
+anims/side_pulled = SubResource( 14 )
+anims/swing = SubResource( 7 )
+anims/thrown = SubResource( 8 )
+anims/walk = SubResource( 6 )
+
+[connection signal="hit_something" from="Grapple/Arrow" to="Grapple" method="_on_Arrow_hit_something"]
+[connection signal="tween_all_completed" from="Grapple/Tween" to="Grapple" method="_on_Tween_tween_all_completed"]

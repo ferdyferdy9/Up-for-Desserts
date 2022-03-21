@@ -1,0 +1,122 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://world/World.tscn" type="PackedScene" id=1]
+[ext_resource path="res://world/objects/Target.tscn" type="PackedScene" id=2]
+[ext_resource path="res://world/objects/Breakable.tscn" type="PackedScene" id=3]
+[ext_resource path="res://world/objects/Door.tscn" type="PackedScene" id=4]
+[ext_resource path="res://world/objects/WindCurrent.tscn" type="PackedScene" id=5]
+[ext_resource path="res://world/objects/Button.tscn" type="PackedScene" id=6]
+[ext_resource path="res://levels/Level3.tscn" type="PackedScene" id=7]
+[ext_resource path="res://world/objects/Movable.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/fonts/Otsutome24.tres" type="DynamicFont" id=9]
+[ext_resource path="res://default_theme.tres" type="Theme" id=10]
+[ext_resource path="res://assets/characters/beetle-stand.png" type="Texture" id=11]
+
+[node name="Level2" instance=ExtResource( 1 )]
+
+[node name="Control" type="Control" parent="." index="0"]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="Control" index="0"]
+margin_left = 6.0
+margin_top = 53.0
+margin_right = 230.0
+margin_bottom = 83.0
+text = "Press X to Shoot"
+
+[node name="Label2" type="Label" parent="Control" index="1"]
+margin_left = 7.0
+margin_top = 303.0
+margin_right = 231.0
+margin_bottom = 333.0
+text = "Press X to Grab"
+
+[node name="Label3" type="Label" parent="Control" index="2"]
+margin_left = 403.0
+margin_top = 8.0
+margin_right = 627.0
+margin_bottom = 74.0
+custom_fonts/font = ExtResource( 9 )
+text = "Press X to Turn
+Into a Rock"
+align = 2
+
+[node name="Label4" type="Label" parent="Control" index="3"]
+margin_left = 224.0
+margin_top = 445.0
+margin_right = 626.0
+margin_bottom = 511.0
+custom_fonts/font = ExtResource( 9 )
+text = "   can double jump when holding something"
+align = 1
+
+[node name="Beetle-stand" type="Sprite" parent="Control/Label4" index="0"]
+position = Vector2( 5, 10 )
+texture = ExtResource( 11 )
+
+[node name="Solid" parent="Tiles" index="0"]
+tile_data = PoolIntArray( -655362, 0, 0, -655361, 0, 2, -589826, 0, 65536, -589825, 0, 65538, -655350, 0, 131076, -655347, 0, 0, -655346, 0, 2, -524290, 0, 65536, -524289, 0, 65538, -589814, 0, 196612, -589811, 0, 65536, -589810, 0, 65538, -458754, 0, 65536, -458753, 0, 65538, -524278, 0, 196612, -524275, 0, 65536, -524274, 0, 65538, -393218, 0, 65536, -393217, 0, 65538, -458742, 0, 196612, -458739, 0, 65536, -458738, 0, 65538, -327682, 0, 65536, -327681, 0, 65538, -393206, 0, 196612, -393203, 0, 65536, -393202, 0, 65538, -262146, 0, 65536, -262145, 0, 65538, -327670, 0, 196612, -327667, 0, 65536, -327666, 0, 65538, -196610, 0, 65536, -196609, 0, 65538, -262134, 0, 196612, -262131, 0, 65536, -262130, 0, 65538, -131074, 0, 65536, -131073, 0, 65538, -196598, 0, 196612, -196595, 0, 65536, -196594, 0, 65538, -65538, 0, 65536, -65537, 0, 196608, -131062, 0, 196612, -131059, 0, 65536, -131058, 0, 65538, -2, 0, 65536, -1, 0, 196614, -65536, 0, 196611, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65531, 0, 1, -65530, 0, 2, -65526, 0, 196612, -65523, 0, 65536, -65522, 0, 65538, 65534, 0, 65536, 65535, 0, 131078, 0, 0, 262144, 1, 0, 131073, 2, 0, 131073, 3, 0, 131073, 4, 0, 131073, 5, 0, 131073, 6, 0, 131074, 10, 0, 196612, 13, 0, 65536, 14, 0, 65538, 131070, 0, 65536, 131071, 0, 196610, 65546, 0, 196612, 65549, 0, 65536, 65550, 0, 65538, 196606, 0, 65536, 196607, 0, 196608, 131082, 0, 196612, 131085, 0, 65536, 131086, 0, 65538, 262142, 0, 65536, 262143, 0, 196614, 196608, 0, 196611, 196609, 0, 2, 196613, 0, 0, 196614, 0, 2, 196618, 0, 196612, 196621, 0, 65536, 196622, 0, 65538, 327678, 0, 65536, 327679, 0, 65537, 262144, 0, 65537, 262145, 0, 196608, 262149, 0, 262147, 262150, 0, 65538, 262154, 0, 196612, 262157, 0, 65536, 262158, 0, 65538, 393214, 0, 65536, 393215, 0, 131078, 327680, 0, 262144, 327681, 0, 131073, 327682, 0, 131073, 327683, 0, 131073, 327684, 0, 131073, 327685, 0, 131079, 327686, 0, 65538, 327690, 0, 196612, 327693, 0, 65536, 327694, 0, 65538, 458750, 0, 65536, 458751, 0, 196610, 393221, 0, 262145, 393222, 0, 65538, 393226, 0, 262148, 393229, 0, 65536, 393230, 0, 65538, 524286, 0, 65536, 524287, 0, 65538, 458757, 0, 131072, 458758, 0, 131074, 458765, 0, 65536, 458766, 0, 65538, 589822, 0, 65536, 589823, 0, 196608, 524301, 0, 262147, 524302, 0, 65538, 655358, 0, 65536, 655359, 0, 196614, 589824, 0, 196611, 589825, 0, 1, 589826, 0, 1, 589827, 0, 1, 589828, 0, 1, 589829, 0, 1, 589830, 0, 1, 589831, 0, 196611, 589832, 0, 1, 589833, 0, 1, 589834, 0, 1, 589835, 0, 1, 589836, 0, 196609, 589837, 0, 196615, 589838, 0, 65538, 720894, 0, 131072, 720895, 0, 131073, 655360, 0, 131073, 655361, 0, 131073, 655362, 0, 131073, 655363, 0, 131073, 655364, 0, 131073, 655365, 0, 131073, 655366, 0, 131073, 655367, 0, 131073, 655368, 0, 131073, 655369, 0, 131073, 655370, 0, 131073, 655371, 0, 131073, 655372, 0, 131073, 655373, 0, 131073, 655374, 0, 131074 )
+
+[node name="PlatformTile" parent="Tiles/PlatformGenerator" index="0"]
+tile_data = PoolIntArray( -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0 )
+
+[node name="Spikes" parent="Tiles" index="2"]
+tile_data = PoolIntArray( 262146, 0, 0, 262147, 0, 0, 262148, 0, 0 )
+
+[node name="Jeff" parent="Players" index="1"]
+position = Vector2( 23, 113 )
+
+[node name="Jack" parent="Players" index="2"]
+position = Vector2( 554, 88 )
+
+[node name="Ed" parent="Players" index="3"]
+position = Vector2( 24, 407 )
+
+[node name="Target" parent="Objects" index="0" instance=ExtResource( 2 )]
+position = Vector2( 270, 115 )
+
+[node name="Target2" parent="Objects" index="1" instance=ExtResource( 2 )]
+position = Vector2( 392, 169 )
+
+[node name="Breakable" parent="Objects" index="2" instance=ExtResource( 3 )]
+position = Vector2( 537, 159 )
+
+[node name="Breakable2" parent="Objects" index="3" instance=ExtResource( 3 )]
+position = Vector2( 585, 159 )
+
+[node name="Breakable3" parent="Objects" index="4" instance=ExtResource( 3 )]
+position = Vector2( 537, 206 )
+
+[node name="Breakable4" parent="Objects" index="5" instance=ExtResource( 3 )]
+position = Vector2( 585, 206 )
+
+[node name="Breakable5" parent="Objects" index="6" instance=ExtResource( 3 )]
+position = Vector2( 537, 257 )
+
+[node name="Breakable6" parent="Objects" index="7" instance=ExtResource( 3 )]
+position = Vector2( 585, 257 )
+
+[node name="Breakable7" parent="Objects" index="8" instance=ExtResource( 3 )]
+position = Vector2( 537, 306 )
+
+[node name="Breakable8" parent="Objects" index="9" instance=ExtResource( 3 )]
+position = Vector2( 585, 306 )
+
+[node name="Door" parent="Objects" index="10" instance=ExtResource( 4 )]
+position = Vector2( 60, -78 )
+next_level = ExtResource( 7 )
+
+[node name="WindCurrent" parent="Objects" index="11" instance=ExtResource( 5 )]
+position = Vector2( 396, 424 )
+
+[node name="WindCurrent2" parent="Objects" index="12" instance=ExtResource( 5 )]
+position = Vector2( 396, 137 )
+
+[node name="Button" parent="Objects" index="13" instance=ExtResource( 6 )]
+position = Vector2( 215, -72 )
+target_paths = [ NodePath("../WindCurrent"), NodePath("../WindCurrent2") ]
+
+[node name="Movable" parent="Objects" index="14" instance=ExtResource( 8 )]
+position = Vector2( 250, 408 )

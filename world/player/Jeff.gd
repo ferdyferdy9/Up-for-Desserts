@@ -4,7 +4,7 @@ onready var grapple = $Grapple
 onready var _ed = get_tree().get_nodes_in_group("Ed")[0]
 
 
-func _process(delta: float) -> void:
+func _process(delta: float) -> void:	
 	if is_controlled:
 		if Input.is_action_just_pressed("attack"):
 			grapple.shoot()

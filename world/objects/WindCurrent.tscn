@@ -36,6 +36,7 @@ position = Vector2( -0.5, -125.5 )
 shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
 amount = 32
 lifetime = 0.6
 explosiveness = 0.1

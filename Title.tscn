@@ -1,0 +1,613 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/title/Logo.png" type="Texture" id=1]
+[ext_resource path="res://ui/Cursor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/CursorSpace.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/Menu.gd" type="Script" id=4]
+[ext_resource path="res://default_theme.tres" type="Theme" id=5]
+[ext_resource path="res://assets/title/wholesome-gamejam_bg_2022.png" type="Texture" id=6]
+[ext_resource path="res://Title.gd" type="Script" id=7]
+[ext_resource path="res://ui/Navigator.gd" type="Script" id=8]
+[ext_resource path="res://assets/title/volume_bar.png" type="Texture" id=9]
+[ext_resource path="res://ui/lbl_fullscreen.gd" type="Script" id=10]
+[ext_resource path="res://ui/OptionMenu.gd" type="Script" id=11]
+[ext_resource path="res://assets/fonts/Otsutome24.tres" type="DynamicFont" id=12]
+[ext_resource path="res://world/Intro.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/characters/slime-stand.png" type="Texture" id=14]
+[ext_resource path="res://assets/characters/archer-swing.png" type="Texture" id=15]
+[ext_resource path="res://assets/characters/beetle-stand.png" type="Texture" id=16]
+
+[node name="Title" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 5 )
+script = ExtResource( 7 )
+start_scene = ExtResource( 13 )
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0.75 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.517647, 0.576471, 0.588235, 1 )
+
+[node name="Navigator" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 8 )
+
+[node name="Title" type="Control" parent="Navigator"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="Navigator/Title"]
+anchor_right = 1.0
+margin_bottom = 297.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="Menu" type="VBoxContainer" parent="Navigator/Title"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -185.0
+custom_constants/separation = 10
+script = ExtResource( 4 )
+cursor_paths = [ NodePath("HBoxContainer/Cursor"), NodePath("HBoxContainer2/Cursor"), NodePath("HBoxContainer3/Cursor"), NodePath("HBoxContainer4/Cursor") ]
+is_active = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Navigator/Title/Menu"]
+margin_right = 640.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="Cursor" parent="Navigator/Title/Menu/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 244.0
+margin_right = 276.0
+
+[node name="Label" type="Label" parent="Navigator/Title/Menu/HBoxContainer"]
+margin_left = 284.0
+margin_top = 1.0
+margin_right = 356.0
+margin_bottom = 31.0
+text = "Start"
+align = 1
+
+[node name="CursorSpace" parent="Navigator/Title/Menu/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 364.0
+margin_right = 396.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Navigator/Title/Menu"]
+margin_top = 42.0
+margin_right = 640.0
+margin_bottom = 74.0
+alignment = 1
+
+[node name="Cursor" parent="Navigator/Title/Menu/HBoxContainer2" instance=ExtResource( 2 )]
+margin_left = 230.0
+margin_right = 262.0
+
+[node name="Label" type="Label" parent="Navigator/Title/Menu/HBoxContainer2"]
+margin_left = 270.0
+margin_top = 1.0
+margin_right = 370.0
+margin_bottom = 31.0
+text = "Options"
+align = 1
+
+[node name="CursorSpace" parent="Navigator/Title/Menu/HBoxContainer2" instance=ExtResource( 3 )]
+margin_left = 378.0
+margin_right = 410.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Navigator/Title/Menu"]
+margin_top = 84.0
+margin_right = 640.0
+margin_bottom = 116.0
+alignment = 1
+
+[node name="Cursor" parent="Navigator/Title/Menu/HBoxContainer3" instance=ExtResource( 2 )]
+margin_left = 234.0
+margin_right = 266.0
+
+[node name="Label" type="Label" parent="Navigator/Title/Menu/HBoxContainer3"]
+margin_left = 274.0
+margin_top = 1.0
+margin_right = 365.0
+margin_bottom = 31.0
+text = "Credits"
+align = 1
+
+[node name="CursorSpace" parent="Navigator/Title/Menu/HBoxContainer3" instance=ExtResource( 3 )]
+margin_left = 373.0
+margin_right = 405.0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Navigator/Title/Menu"]
+margin_top = 126.0
+margin_right = 640.0
+margin_bottom = 158.0
+alignment = 1
+
+[node name="Cursor" parent="Navigator/Title/Menu/HBoxContainer4" instance=ExtResource( 2 )]
+
+[node name="Label" type="Label" parent="Navigator/Title/Menu/HBoxContainer4"]
+margin_left = 294.0
+margin_top = 1.0
+margin_right = 345.0
+margin_bottom = 31.0
+text = "Exit"
+align = 1
+
+[node name="CursorSpace" parent="Navigator/Title/Menu/HBoxContainer4" instance=ExtResource( 3 )]
+margin_left = 353.0
+margin_right = 385.0
+
+[node name="Archer-swing" type="Sprite" parent="Navigator/Title"]
+visible = false
+position = Vector2( 120, 371 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 15 )
+
+[node name="Beetle-stand" type="Sprite" parent="Navigator/Title"]
+visible = false
+position = Vector2( 321, 358 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 16 )
+
+[node name="Slime-jump" type="Sprite" parent="Navigator/Title"]
+visible = false
+position = Vector2( 508, 350 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 14 )
+flip_h = true
+
+[node name="Options" type="Control" parent="Navigator"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Menu" type="VBoxContainer" parent="Navigator/Options"]
+margin_right = 640.0
+margin_bottom = 480.0
+custom_constants/separation = 16
+alignment = 1
+script = ExtResource( 11 )
+cursor_paths = [ NodePath("GridContainer/Cursor"), NodePath("GridContainer/Cursor3"), NodePath("GridContainer/Cursor2"), NodePath("HBoxContainer2/Cursor"), NodePath("HBoxContainer/Cursor") ]
+
+[node name="GridContainer" type="GridContainer" parent="Navigator/Options/Menu"]
+margin_left = 152.0
+margin_top = 120.0
+margin_right = 487.0
+margin_bottom = 248.0
+size_flags_horizontal = 4
+custom_constants/vseparation = 16
+custom_constants/hseparation = 20
+columns = 4
+
+[node name="Cursor" parent="Navigator/Options/Menu/GridContainer" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_right = 32.0
+
+[node name="Label" type="Label" parent="Navigator/Options/Menu/GridContainer"]
+margin_left = 52.0
+margin_top = 1.0
+margin_right = 143.0
+margin_bottom = 31.0
+text = "Master"
+
+[node name="master_progress" type="TextureProgress" parent="Navigator/Options/Menu/GridContainer"]
+margin_left = 163.0
+margin_right = 283.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 120, 30 )
+value = 100.0
+texture_progress = ExtResource( 9 )
+nine_patch_stretch = true
+
+[node name="CursorSpace" parent="Navigator/Options/Menu/GridContainer" instance=ExtResource( 3 )]
+margin_left = 303.0
+margin_right = 335.0
+
+[node name="Cursor3" parent="Navigator/Options/Menu/GridContainer" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 48.0
+margin_right = 32.0
+margin_bottom = 80.0
+
+[node name="Label3" type="Label" parent="Navigator/Options/Menu/GridContainer"]
+margin_left = 52.0
+margin_top = 49.0
+margin_right = 143.0
+margin_bottom = 79.0
+text = "Music"
+
+[node name="music_progress" type="TextureProgress" parent="Navigator/Options/Menu/GridContainer"]
+margin_left = 163.0
+margin_top = 48.0
+margin_right = 283.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 120, 30 )
+value = 100.0
+texture_progress = ExtResource( 9 )
+nine_patch_stretch = true
+
+[node name="CursorSpace3" parent="Navigator/Options/Menu/GridContainer" instance=ExtResource( 3 )]
+margin_left = 303.0
+margin_top = 48.0
+margin_right = 335.0
+margin_bottom = 80.0
+
+[node name="Cursor2" parent="Navigator/Options/Menu/GridContainer" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 96.0
+margin_right = 32.0
+margin_bottom = 128.0
+
+[node name="Label2" type="Label" parent="Navigator/Options/Menu/GridContainer"]
+margin_left = 52.0
+margin_top = 97.0
+margin_right = 143.0
+margin_bottom = 127.0
+text = "SFX"
+
+[node name="sfx_progress" type="TextureProgress" parent="Navigator/Options/Menu/GridContainer"]
+margin_left = 163.0
+margin_top = 96.0
+margin_right = 283.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 120, 30 )
+value = 100.0
+texture_progress = ExtResource( 9 )
+nine_patch_stretch = true
+
+[node name="CursorSpace2" parent="Navigator/Options/Menu/GridContainer" instance=ExtResource( 3 )]
+margin_left = 303.0
+margin_top = 96.0
+margin_right = 335.0
+margin_bottom = 128.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Navigator/Options/Menu"]
+margin_left = 173.0
+margin_top = 264.0
+margin_right = 467.0
+margin_bottom = 296.0
+size_flags_horizontal = 4
+custom_constants/separation = 8
+
+[node name="Cursor" parent="Navigator/Options/Menu/HBoxContainer2" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_right = 32.0
+
+[node name="lbl_fullscreen" type="Label" parent="Navigator/Options/Menu/HBoxContainer2"]
+margin_left = 40.0
+margin_top = 1.0
+margin_right = 254.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 214, 0 )
+size_flags_horizontal = 4
+text = "Fullscreen : Off"
+script = ExtResource( 10 )
+
+[node name="CursorSpace" parent="Navigator/Options/Menu/HBoxContainer2" instance=ExtResource( 3 )]
+margin_left = 262.0
+margin_right = 294.0
+
+[node name="Control" type="Control" parent="Navigator/Options/Menu"]
+margin_top = 312.0
+margin_right = 640.0
+margin_bottom = 312.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Navigator/Options/Menu"]
+margin_left = 249.0
+margin_top = 328.0
+margin_right = 390.0
+margin_bottom = 360.0
+size_flags_horizontal = 4
+
+[node name="Cursor" parent="Navigator/Options/Menu/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_right = 32.0
+
+[node name="Label" type="Label" parent="Navigator/Options/Menu/HBoxContainer"]
+margin_left = 40.0
+margin_top = 1.0
+margin_right = 101.0
+margin_bottom = 31.0
+text = "Back"
+align = 1
+
+[node name="CursorSpace" parent="Navigator/Options/Menu/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 109.0
+margin_right = 141.0
+
+[node name="Credits" type="Control" parent="Navigator"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Navigator/Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Navigator/Credits/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 620.0
+margin_bottom = 460.0
+custom_constants/separation = 20
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Navigator/Credits/MarginContainer/VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 318.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="VBoxContainer" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 237.0
+margin_bottom = 318.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+margin_right = 237.0
+margin_bottom = 30.0
+text = "Project Manager"
+
+[node name="Label3" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+margin_top = 38.0
+margin_right = 237.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 12 )
+text = "Ferdy"
+
+[node name="Control" type="Control" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+margin_top = 68.0
+margin_right = 237.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Label2" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+margin_top = 86.0
+margin_right = 237.0
+margin_bottom = 116.0
+text = "Gameplay Designer"
+
+[node name="Label4" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+margin_top = 124.0
+margin_right = 237.0
+margin_bottom = 146.0
+custom_fonts/font = ExtResource( 12 )
+text = "SlascoplerdSorasu"
+
+[node name="Control2" type="Control" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+margin_top = 154.0
+margin_right = 237.0
+margin_bottom = 164.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Label5" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+margin_top = 172.0
+margin_right = 237.0
+margin_bottom = 202.0
+text = "Concept Artist"
+
+[node name="Label6" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+margin_top = 210.0
+margin_right = 237.0
+margin_bottom = 232.0
+custom_fonts/font = ExtResource( 12 )
+text = "SlascoplerdSorasu"
+
+[node name="Control3" type="Control" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+margin_top = 240.0
+margin_right = 237.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Label9" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+margin_top = 258.0
+margin_right = 237.0
+margin_bottom = 288.0
+text = "Level Designer"
+
+[node name="Label7" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+margin_top = 296.0
+margin_right = 237.0
+margin_bottom = 318.0
+custom_fonts/font = ExtResource( 12 )
+text = "Ferdy"
+
+[node name="Control" type="Control" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 245.0
+margin_right = 250.0
+margin_bottom = 318.0
+size_flags_horizontal = 3
+
+[node name="GridContainer2" type="VBoxContainer" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 258.0
+margin_right = 430.0
+margin_bottom = 318.0
+size_flags_vertical = 3
+
+[node name="Label5" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_right = 172.0
+margin_bottom = 30.0
+text = "Artist"
+
+[node name="Label6" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 38.0
+margin_right = 172.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 12 )
+text = "SlascoplerdSorasu"
+
+[node name="Label10" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 68.0
+margin_right = 172.0
+margin_bottom = 90.0
+custom_fonts/font = ExtResource( 12 )
+text = "CYCzen"
+
+[node name="Label8" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 98.0
+margin_right = 172.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 12 )
+text = "Ferdy"
+
+[node name="Control5" type="Control" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 128.0
+margin_right = 172.0
+margin_bottom = 138.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Label7" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 146.0
+margin_right = 172.0
+margin_bottom = 176.0
+text = "Music"
+
+[node name="Label11" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 184.0
+margin_right = 172.0
+margin_bottom = 206.0
+custom_fonts/font = ExtResource( 12 )
+text = "SlascoplerdSorasu"
+
+[node name="Control4" type="Control" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 214.0
+margin_right = 172.0
+margin_bottom = 224.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Label2" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 232.0
+margin_right = 172.0
+margin_bottom = 262.0
+text = "SFX"
+
+[node name="Label9" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 270.0
+margin_right = 172.0
+margin_bottom = 292.0
+custom_fonts/font = ExtResource( 12 )
+text = "SlascoplerdSorasu"
+
+[node name="Control2" type="Control" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 438.0
+margin_right = 444.0
+margin_bottom = 318.0
+size_flags_horizontal = 3
+
+[node name="GridContainer3" type="VBoxContainer" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 452.0
+margin_right = 600.0
+margin_bottom = 318.0
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer3"]
+margin_right = 148.0
+margin_bottom = 30.0
+text = "Programmer"
+
+[node name="Label3" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer3"]
+margin_top = 38.0
+margin_right = 148.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 12 )
+text = "Ferdy"
+
+[node name="Control3" type="Control" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer3"]
+margin_top = 68.0
+margin_right = 148.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Label7" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer3"]
+margin_top = 86.0
+margin_right = 148.0
+margin_bottom = 116.0
+text = "Story"
+
+[node name="Label8" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer3"]
+margin_top = 124.0
+margin_right = 148.0
+margin_bottom = 146.0
+custom_fonts/font = ExtResource( 12 )
+text = "Ferdy"
+
+[node name="Control4" type="Control" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer3"]
+margin_top = 154.0
+margin_right = 148.0
+margin_bottom = 164.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Label" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer3"]
+margin_top = 172.0
+margin_right = 148.0
+margin_bottom = 202.0
+text = "Tester"
+
+[node name="Label4" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer3"]
+margin_top = 210.0
+margin_right = 148.0
+margin_bottom = 232.0
+custom_fonts/font = ExtResource( 12 )
+text = "Neg"
+
+[node name="Label5" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer3"]
+margin_top = 240.0
+margin_right = 148.0
+margin_bottom = 262.0
+custom_fonts/font = ExtResource( 12 )
+text = "Crestelysio"
+
+[node name="Label6" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer3"]
+margin_top = 270.0
+margin_right = 148.0
+margin_bottom = 292.0
+custom_fonts/font = ExtResource( 12 )
+text = "wallofpuppies"
+
+[node name="Label2" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer"]
+margin_top = 338.0
+margin_right = 600.0
+margin_bottom = 388.0
+custom_fonts/font = ExtResource( 12 )
+text = "This Game is made using Godot Engine
+godotengine.org/license"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Navigator/Credits/MarginContainer/VBoxContainer"]
+margin_top = 408.0
+margin_right = 600.0
+margin_bottom = 440.0
+alignment = 1
+
+[node name="Cursor" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 229.0
+margin_right = 261.0
+script = null
+
+[node name="Label" type="Label" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 269.0
+margin_top = 1.0
+margin_right = 330.0
+margin_bottom = 31.0
+text = "Back"
+
+[node name="CursorSpace" parent="Navigator/Credits/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 338.0
+margin_right = 370.0
+
+[connection signal="selected" from="Navigator/Title/Menu" to="." method="_on_Title_Menu_selected"]
+[connection signal="selected" from="Navigator/Options/Menu" to="." method="_on_Options_Menu_selected"]

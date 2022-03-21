@@ -1,0 +1,215 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://world/player/Ed.gd" type="Script" id=1]
+[ext_resource path="res://assets/characters/beetle-stand.png" type="Texture" id=2]
+[ext_resource path="res://world/util/Area2DPlus.gd" type="Script" id=3]
+[ext_resource path="res://assets/characters/beetle-walk_0002.png" type="Texture" id=4]
+[ext_resource path="res://assets/characters/beetle-walk_0003.png" type="Texture" id=5]
+[ext_resource path="res://assets/characters/beetle-walk_0000.png" type="Texture" id=6]
+[ext_resource path="res://assets/characters/beetle-walk_0001.png" type="Texture" id=7]
+[ext_resource path="res://assets/characters/beetle-jump-fall.png" type="Texture" id=8]
+[ext_resource path="res://assets/characters/beetle-grab.png" type="Texture" id=9]
+[ext_resource path="res://assets/characters/beetle-throw-side_0000.png" type="Texture" id=10]
+[ext_resource path="res://assets/characters/beetle-throw-side_0001.png" type="Texture" id=11]
+[ext_resource path="res://assets/characters/beetle-throw-down_0002.png" type="Texture" id=12]
+[ext_resource path="res://assets/characters/beetle-throw-down_0003.png" type="Texture" id=13]
+[ext_resource path="res://assets/characters/beetle-throw-down_0001.png" type="Texture" id=14]
+[ext_resource path="res://assets/characters/beetle-throw-down_0000.png" type="Texture" id=15]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 13.5, 20 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 3 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 25.5, 22 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 2 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "fall"
+length = 0.0833333
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "grab"
+length = 0.0833333
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "idle"
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "jump"
+length = 0.0833333
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "throw_down"
+length = 0.333333
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 15 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 13 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "throw_side"
+length = 0.166667
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 10 ), ExtResource( 11 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "walk"
+length = 0.5
+loop = true
+step = 0.125
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chara:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25, 0.375 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ) ]
+}
+
+[node name="Ed" type="KinematicBody2D" groups=["Ed", "Player"]]
+process_priority = 1
+position = Vector2( 208, 395 )
+collision_layer = 2
+collision_mask = 257
+script = ExtResource( 1 )
+hold_offset = Vector2( 0, -36 )
+
+[node name="Chara" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.5, 4 )
+shape = SubResource( 1 )
+
+[node name="PlatformDetection" type="Area2D" parent="."]
+position = Vector2( 0, 24 )
+collision_layer = 256
+collision_mask = 256
+input_pickable = false
+monitorable = false
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformDetection"]
+shape = SubResource( 2 )
+
+[node name="GrabArea" type="Area2D" parent="."]
+collision_mask = 9
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea"]
+position = Vector2( 8.5, 4 )
+shape = SubResource( 4 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 24, 0 )
+collision_mask = 11
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
+anims/fall = SubResource( 6 )
+anims/grab = SubResource( 10 )
+anims/idle = SubResource( 7 )
+anims/jump = SubResource( 8 )
+anims/throw_down = SubResource( 11 )
+anims/throw_side = SubResource( 12 )
+anims/walk = SubResource( 9 )
+
+[node name="ThrowDelayTimer" type="Timer" parent="."]
+wait_time = 0.083
+one_shot = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

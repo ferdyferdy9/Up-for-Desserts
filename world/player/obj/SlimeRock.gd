@@ -1,11 +1,26 @@
 extends KinematicBody2D
 
+onready var timer = $Timer
+onready var particles = $Particles2D
+
+onready var cast = $RayCast2D
+onready var cast2 = $RayCast2D2
+
 var gravity:float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var linear_velocity:Vector2
 
+var _last_floor:bool
+var _first_frame = true
+
+
+func _ready() -> void:
+	$Sprite.playing = true
+	particles.emitting = true
+
 
 func _physics_process(delta: float) -> void:
-	update_physics_platformer(delta)
+	if timer.time_left == 0:
+		update_physics_platformer(delta)
 
 
 func update_physics_platformer(delta:float) -> void:
@@ -18,10 +33,31 @@ func update_physics_platformer(delta:float) -> void:
 	var last_pos = position
 	linear_velocity = move_and_slide_with_snap(linear_velocity, Vector2.DOWN * 2, Vector2.UP)
 	position.x -= get_floor_velocity().x * delta
-	if is_on_floor():
+	if is_on_floor() and not is_on_wall():
 		position.x = last_pos.x
 	
 	for i in range(get_slide_count()):
 		var b = get_slide_collision(i).collider
 		if b.is_in_group("Breakable"):
 			b.destroy()
+	
+	if _first_frame:
+		_last_floor = is_on_floor()
+		_first_frame = false
+	
+	if custom_is_on_floor() and custom_is_on_floor() != _last_floor:
+		$Ground.play()
+	
+	_last_floor = custom_is_on_floor()
+
+
+func custom_is_on_floor() -> bool:
+	return cast.is_colliding() or cast2.is_colliding() or is_on_floor()
+
+
+func _on_Timer_timeout() -> void:
+	particles.emitting = false
+
+
+func _on_Timer2_timeout() -> void:
+	particles.emitting = false

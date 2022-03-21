@@ -1,11 +1,14 @@
-extends KinematicBody2D
+extends Area2D
 
 export(Array, NodePath) var target_paths:Array
 export(bool) var start_active:bool
+export(bool) var hold_button:bool
 
 onready var sprite = $Sprite
 
 var targets:Array
+var _active:bool
+var _last_active:bool
 
 func _ready() -> void:
 	for path in target_paths:
@@ -16,9 +19,19 @@ func _ready() -> void:
 	deactivate()
 
 
+func _process(delta: float) -> void:
+	_active = get_overlapping_bodies().size() > 0
+	if _active != _last_active:
+		if _active:
+			activate()
+		elif hold_button:
+			deactivate()
+	_last_active = _active
+
+
 func activate() -> void:
 	if sprite.frame != 1:
-		$AudioStreamPlayer.play()
+		$button.play()
 	sprite.frame = 1
 	if start_active:
 		set_switch(false)

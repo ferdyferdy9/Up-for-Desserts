@@ -5,17 +5,21 @@ export(int) var order = 0
 
 export(float) var move_accel:float = 30
 export(float) var move_deaccel:float = 50
-export(float) var max_move_speed:float = 250
+export(float) var max_move_speed:float = 280
 export(float) var jump_strength:float = 900 * 0.775
 export(float) var drop_offset:float = 3
 export(float) var drop_timer:float = 0.1
 
 onready var platform_detection = $PlatformDetection
+onready var anim_player = $AnimationPlayer
+onready var sprite = $Chara
 
 var input_vector:Vector2
 var linear_velocity:Vector2
 var facing_dir:Vector2 = Vector2.RIGHT
 var gravity:float = ProjectSettings.get_setting("physics/2d/default_gravity")
+var is_override_animation:bool = false
+var is_override_facing:bool = false
 
 var _platform:Node
 
@@ -23,11 +27,35 @@ func _process(delta: float) -> void:
 	if is_controlled:
 		update_input_platformer(delta)
 		
-		if input_vector.x > 0:
-			facing_dir.x = 1
-		elif input_vector.x < 0:
-			facing_dir.x = -1
+		if not is_override_facing:
+			if input_vector.x > 0:
+				facing_dir.x = 1
+			elif input_vector.x < 0:
+				facing_dir.x = -1
 		facing_dir.y = sign(input_vector.y)
+	
+	update_animation()
+
+
+func update_animation():
+	if facing_dir.x > 0:
+		sprite.scale.x = 1
+	elif facing_dir.x < 0:
+		sprite.scale.x = -1
+	
+	if is_override_animation:
+		return
+	
+	if is_on_floor():
+		if input_vector.x != 0:
+			anim_player.play("walk")
+		else:
+			anim_player.play("idle")
+	else:
+		if linear_velocity.y < 0:
+			anim_player.play("jump")
+		else:
+			anim_player.play("fall")
 
 
 func is_on_platform() -> bool:
@@ -50,6 +78,7 @@ func late_update() -> void:
 
 func jump() -> void:
 	linear_velocity.y = -jump_strength
+	SoundManager.play_jump()
 
 
 func update_input_platformer(delta:float) -> void:

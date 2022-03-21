@@ -4,38 +4,75 @@ export(Vector2) var hold_offset = Vector2(0, -48)
 
 onready var grab_area = $GrabArea
 onready var ray_cast = $RayCast2D
+onready var throw_delay = $ThrowDelayTimer
 
 var flying_obj_scene = preload("res://world/player/obj/FlyingObj.tscn")
 var grabbed_body:Node2D
 var thrown_obj:Array
+
+var is_throwing:bool
 
 
 func _process(delta: float) -> void:
 	if !is_instance_valid(grabbed_body):
 		grabbed_body = null
 	if is_controlled:
-		var isThrowDown:bool
-		isThrowDown = isThrowDown or Input.is_action_just_pressed("jump") 
-		isThrowDown = isThrowDown or (Input.is_action_pressed("ui_down") and Input.is_action_just_pressed("attack"))
-		if isThrowDown and not is_on_floor():
-			if grabbed_body != null:
-				create_thrown_body(Vector2.DOWN)
+		if grabbed_body and grabbed_body.is_in_group("Jeff") and grabbed_body.grapple.is_swing:
+			var isThrow:bool
+			isThrow = isThrow or Input.is_action_just_pressed("jump") 
+			isThrow = isThrow or Input.is_action_just_pressed("attack")
+			if isThrow:
+				grabbed_body.set_physics_process(true)
+				grabbed_body.remove_collision_exception_with(self)
+				grabbed_body = null
+				is_override_animation = true
+				anim_player.play("throw_down")
+				SoundManager.play_throw()
 				jump()
-		elif Input.is_action_just_pressed("attack"):
-			if grabbed_body == null:
-				grabbed_body = get_closest()
-				if grabbed_body:
-					grabbed_body.set_physics_process(false)
-					grabbed_body.add_collision_exception_with(self)
-			elif can_throw():
-				create_thrown_body(Vector2(facing_dir.x, 0))
+		else:
+			var isThrowDown:bool
+			isThrowDown = isThrowDown or Input.is_action_just_pressed("jump") 
+			isThrowDown = isThrowDown or (Input.is_action_pressed("ui_down") and Input.is_action_just_pressed("attack"))
+			if isThrowDown and not is_on_floor():
+				if grabbed_body != null:
+					create_thrown_body(Vector2.DOWN)
+					jump()
+					is_override_animation = true
+					anim_player.play("throw_down")
+					SoundManager.play_throw()
+			elif Input.is_action_just_pressed("attack"):
+				if grabbed_body == null:
+					grabbed_body = get_closest()
+					if grabbed_body:
+						is_override_animation = true
+						anim_player.play("grab")
+						SoundManager.play_grab()
+						grabbed_body.linear_velocity = Vector2.ZERO
+						grabbed_body.set_physics_process(false)
+						grabbed_body.add_collision_exception_with(self)
+						if grabbed_body.is_in_group("Player"):
+							grabbed_body.is_override_animation = true
+							grabbed_body.anim_player.play("hurt_grabbed")
+				elif can_throw() and not is_throwing:
+					is_throwing = true
+					is_override_animation = true
+					anim_player.play("throw_side")
+					throw_delay.start()
+					SoundManager.play_throw()
+					yield(throw_delay, "timeout")
+					is_throwing = false
+					create_thrown_body(Vector2(facing_dir.x, 0))
 	
 	if facing_dir.x > 0:
 		grab_area.scale.x = 1
 		ray_cast.scale.x = 1
+		if grabbed_body and grabbed_body.is_in_group("Player"):
+			grabbed_body.facing_dir.x = 1
 	elif facing_dir.x < 0:
 		grab_area.scale.x = -1
 		ray_cast.scale.x = -1
+		if grabbed_body and grabbed_body.is_in_group("Player"):
+			grabbed_body.facing_dir.x = -1
 
 
 func _physics_process(delta:float) -> void:
@@ -46,13 +83,9 @@ func _physics_process(delta:float) -> void:
 			if grabbed_body.grapple.is_swing:
 				if is_controlled:
 					grabbed_body.apply_input(get_desired(delta), delta)
-					if Input.is_action_just_pressed("jump"):
-						grabbed_body.set_physics_process(true)
-						grabbed_body.remove_collision_exception_with(self)
-						grabbed_body = null
-						jump()
 				return
 		grabbed_body.global_position = global_position + hold_offset
+		grabbed_body.linear_velocity = Vector2.ZERO
 
 
 func create_thrown_body(dir):
@@ -102,3 +135,7 @@ func get_closest():
 			if c_dist > n_dist:
 				closest = b
 	return closest
+
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	is_override_animation = false

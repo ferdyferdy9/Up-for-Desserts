@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/placeholder/hook.png" type="Texture" id=1]
+[ext_resource path="res://assets/objects/grapplepoint.png" type="Texture" id=1]
 [ext_resource path="res://world/objects/Swing.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.0
 
 [node name="Swing" type="KinematicBody2D" groups=["Swing"]]
-modulate = Color( 1, 0.87451, 0.541176, 1 )
+modulate = Color( 0.976471, 0.603922, 0.603922, 1 )
 collision_layer = 8
 collision_mask = 0
 motion/sync_to_physics = true

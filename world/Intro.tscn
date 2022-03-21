@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://world/Intro.gd" type="Script" id=1]
+[ext_resource path="res://assets/title/wholesome-gamejam_bg_2022.png" type="Texture" id=2]
+[ext_resource path="res://assets/characters/slime-stand.png" type="Texture" id=3]
+[ext_resource path="res://assets/characters/beetle-stand.png" type="Texture" id=4]
+[ext_resource path="res://assets/characters/archer-stand.png" type="Texture" id=5]
+[ext_resource path="res://default_theme.tres" type="Theme" id=6]
+
+[node name="Intro" type="Node"]
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+
+[node name="Slime-stand" type="Sprite" parent="."]
+position = Vector2( 125, 419 )
+texture = ExtResource( 3 )
+
+[node name="Archer-stand" type="Sprite" parent="."]
+position = Vector2( 64, 418 )
+texture = ExtResource( 5 )
+
+[node name="Beetle-stand" type="Sprite" parent="."]
+position = Vector2( 178, 421 )
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 40.0
+margin_top = 18.0
+margin_right = 617.0
+margin_bottom = 300.0
+theme = ExtResource( 6 )
+text = "Your community were sending teams of 
+heroes to search for food.
+
+Your team have found a tower, and from 
+below you can somewhat see some sort of
+dessert at the top of the tower.
+
+And so begins your climb up the tower."

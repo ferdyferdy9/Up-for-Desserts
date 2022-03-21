@@ -17,5 +17,5 @@ func update_physics_platformer(delta:float) -> void:
 	var last_pos = position
 	linear_velocity = move_and_slide_with_snap(linear_velocity, Vector2.DOWN * 2, Vector2.UP)
 	position.x -= get_floor_velocity().x * delta
-	if is_on_floor():
+	if is_on_floor() and not is_on_wall():
 		position.x = last_pos.x

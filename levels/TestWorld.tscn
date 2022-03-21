@@ -1,0 +1,210 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://world/tile/default_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://world/player/Jack.tscn" type="PackedScene" id=2]
+[ext_resource path="res://world/tile/platform_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://world/player/Jeff.tscn" type="PackedScene" id=4]
+[ext_resource path="res://world/objects/WindCurrent.tscn" type="PackedScene" id=5]
+[ext_resource path="res://world/platform/PlatformGenerator.gd" type="Script" id=6]
+[ext_resource path="res://world/player/Ed.tscn" type="PackedScene" id=7]
+[ext_resource path="res://world/util/CameraFollow.gd" type="Script" id=8]
+[ext_resource path="res://world/util/Players.gd" type="Script" id=10]
+[ext_resource path="res://assets/placeholder/arrow.png" type="Texture" id=13]
+[ext_resource path="res://world/objects/Target.tscn" type="PackedScene" id=16]
+[ext_resource path="res://world/objects/Movable.tscn" type="PackedScene" id=17]
+[ext_resource path="res://world/objects/Swing.tscn" type="PackedScene" id=18]
+[ext_resource path="res://world/objects/Breakable.tscn" type="PackedScene" id=20]
+[ext_resource path="res://world/objects/Switch.tscn" type="PackedScene" id=21]
+[ext_resource path="res://world/objects/Cannon.tscn" type="PackedScene" id=22]
+
+[node name="TestWorld" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enable = true
+
+[node name="Tutorial" type="Control" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Tutorial"]
+modulate = Color( 0.745098, 0.745098, 0.745098, 1 )
+margin_left = 47.0
+margin_top = 164.0
+margin_right = 323.0
+margin_bottom = 251.0
+text = "      + Target = pull self
+      + Pin = Swing
+      + Crate = pull crate"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Tutorial/Label"]
+margin_left = 4.0
+margin_top = 10.0
+margin_right = 52.0
+margin_bottom = 50.0
+rect_rotation = -45.2556
+rect_scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 13 )
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Tutorial/Label"]
+margin_left = 3.99998
+margin_top = 42.0
+margin_right = 52.0
+margin_bottom = 82.0
+rect_rotation = -45.2556
+rect_scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 13 )
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Tutorial/Label"]
+margin_left = 4.0
+margin_top = 73.0
+margin_right = 52.0
+margin_bottom = 113.0
+rect_rotation = -45.2556
+rect_scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 13 )
+
+[node name="Label2" type="Label" parent="CanvasLayer/Tutorial"]
+modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
+margin_left = 356.0
+margin_top = 182.0
+margin_right = 600.0
+margin_bottom = 362.0
+text = "- Orange shoot
+- Green turn into rock
+- Blue can pickup stuff
+"
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Tutorial/Label2"]
+margin_left = 162.0
+margin_top = 15.0
+margin_right = 210.0
+margin_bottom = 55.0
+rect_rotation = -45.2556
+rect_scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 13 )
+
+[node name="Label3" type="Label" parent="CanvasLayer/Tutorial"]
+modulate = Color( 0.796078, 0.796078, 0.796078, 1 )
+margin_left = 47.0
+margin_top = -98.0
+margin_right = 549.0
+margin_bottom = -73.0
+text = "(Green's Rock Sprite is a Crate as placeholder)"
+
+[node name="Label4" type="Label" parent="CanvasLayer/Tutorial"]
+modulate = Color( 0.796078, 0.796078, 0.796078, 1 )
+margin_left = 64.0
+margin_top = -430.0
+margin_right = 566.0
+margin_bottom = -405.0
+text = "Blue can double jump when holding an object"
+
+[node name="Label5" type="Label" parent="CanvasLayer/Tutorial"]
+modulate = Color( 0.741176, 0.741176, 0.741176, 1 )
+margin_left = 334.0
+margin_top = 324.0
+margin_right = 443.0
+margin_bottom = 411.0
+text = "Z = Jump
+X = Ability
+C = Switch"
+
+[node name="Label6" type="Label" parent="CanvasLayer/Tutorial"]
+modulate = Color( 0.756863, 0.756863, 0.756863, 1 )
+margin_left = 241.0
+margin_top = 266.0
+margin_right = 422.0
+margin_bottom = 322.0
+text = "This is breakable
+using rock"
+
+[node name="Tiles" type="Node2D" parent="."]
+position = Vector2( -15, 0 )
+z_index = -10
+
+[node name="Solid" type="TileMap" parent="Tiles"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 48, 48 )
+cell_quadrant_size = 24
+cell_custom_transform = Transform2D( 48, 0, 0, 48, 0, 0 )
+format = 1
+tile_data = PoolIntArray( -1900544, 0, 0, -1900531, 0, 0, -1835008, 0, 0, -1834995, 0, 0, -1769472, 0, 0, -1769459, 0, 0, -1703936, 0, 0, -1703923, 0, 0, -1638400, 0, 0, -1638387, 0, 0, -1572864, 0, 0, -1572851, 0, 0, -1507328, 0, 0, -1507315, 0, 0, -1441792, 0, 0, -1441779, 0, 0, -1376256, 0, 0, -1376243, 0, 0, -1310720, 0, 0, -1310707, 0, 0, -1245184, 0, 0, -1245171, 0, 0, -1179648, 0, 0, -1179635, 0, 0, -1114112, 0, 0, -1114099, 0, 0, -1048576, 0, 0, -1048563, 0, 0, -983040, 0, 0, -983027, 0, 0, -917504, 0, 0, -917491, 0, 0, -851968, 0, 0, -851955, 0, 0, -786432, 0, 0, -786419, 0, 0, -720896, 0, 0, -720883, 0, 0, -655360, 0, 0, -655347, 0, 0, -589824, 0, 0, -589811, 0, 0, -524288, 0, 0, -524275, 0, 0, -458752, 0, 0, -458739, 0, 0, -393216, 0, 0, -393203, 0, 0, -327680, 0, 0, -327667, 0, 0, -262144, 0, 0, -262131, 0, 0, -196608, 0, 0, -196595, 0, 0, -131072, 0, 0, -131059, 0, 0, -65536, 0, 0, -65523, 0, 0, 0, 0, 0, 13, 0, 0, 65536, 0, 0, 65549, 0, 0, 131072, 0, 0, 131085, 0, 0, 196608, 0, 0, 196621, 0, 0, 262144, 0, 0, 262157, 0, 0, 327680, 0, 0, 327693, 0, 0, 393216, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 458752, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 524288, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0 )
+
+[node name="PlatformGenerator" type="Node2D" parent="Tiles"]
+script = ExtResource( 6 )
+
+[node name="PlatformTile" type="TileMap" parent="Tiles/PlatformGenerator"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 48, 48 )
+cell_quadrant_size = 24
+cell_custom_transform = Transform2D( 48, 0, 0, 48, 0, 0 )
+format = 1
+tile_data = PoolIntArray( -1507327, 0, 0, -1507326, 0, 0, -1507325, 0, 0, -1507324, 0, 0, -1507323, 0, 0, -1507322, 0, 0, -1507321, 0, 0, -1507320, 0, 0, -1507319, 0, 0, -1507318, 0, 0, -1507317, 0, 0, -1507316, 0, 0, -1376251, 0, 0, -1376250, 0, 0, -1179647, 0, 0, -1179646, 0, 0, -1179645, 0, 0, -1179644, 0, 0, -1179643, 0, 0, -1179642, 0, 0, -1179641, 0, 0, -1179640, 0, 0, -1179639, 0, 0, -1179638, 0, 0, -1048575, 0, 0, -1048574, 0, 0, -1048568, 0, 0, -1048567, 0, 0, -1048566, 0, 0, -1048565, 0, 0, -1048564, 0, 0, -917503, 0, 0, -917502, 0, 0, -786431, 0, 0, -786430, 0, 0, -786423, 0, 0, -786422, 0, 0, -655359, 0, 0, -655358, 0, 0, -655357, 0, 0, -655356, 0, 0, -655355, 0, 0, -655354, 0, 0, -655353, 0, 0, -655352, 0, 0, -655351, 0, 0, -655350, 0, 0, -655349, 0, 0, -655348, 0, 0, -524286, 0, 0, -458749, 0, 0, -458748, 0, 0, -458747, 0, 0, -327675, 0, 0, -327674, 0, 0, -327673, 0, 0, -327672, 0, 0, -196600, 0, 0, -196599, 0, 0, -196598, 0, 0, -131060, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 65542, 0, 0, 131079, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 458755, 0, 0 )
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Target" parent="Objects" instance=ExtResource( 16 )]
+position = Vector2( 298, 83 )
+motion/sync_to_physics = true
+
+[node name="Movable" parent="Objects" instance=ExtResource( 17 )]
+position = Vector2( 527, 115 )
+
+[node name="Swing" parent="Objects" instance=ExtResource( 18 )]
+position = Vector2( 209, 118 )
+
+[node name="Swing2" parent="Objects" instance=ExtResource( 18 )]
+position = Vector2( 212, -703 )
+
+[node name="Swing3" parent="Objects" instance=ExtResource( 18 )]
+position = Vector2( 453, -1018 )
+
+[node name="WindCurrent" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( 173, -16 )
+
+[node name="Breakable" parent="Objects" instance=ExtResource( 20 )]
+position = Vector2( 298, 405 )
+
+[node name="Breakable2" parent="Objects" instance=ExtResource( 20 )]
+position = Vector2( 292, 345 )
+
+[node name="Breakable3" parent="Objects" instance=ExtResource( 20 )]
+position = Vector2( 420, 400 )
+
+[node name="Breakable4" parent="Objects" instance=ExtResource( 20 )]
+position = Vector2( 352, 346 )
+
+[node name="Breakable5" parent="Objects" instance=ExtResource( 20 )]
+position = Vector2( 357, 408 )
+
+[node name="Breakable6" parent="Objects" instance=ExtResource( 20 )]
+position = Vector2( 419, 336 )
+
+[node name="Switch" parent="Objects" instance=ExtResource( 21 )]
+position = Vector2( 597, -26 )
+target_paths = [ NodePath("../WindCurrent") ]
+
+[node name="Cannon" parent="Objects" instance=ExtResource( 22 )]
+position = Vector2( 585, -793 )
+
+[node name="Players" type="Node2D" parent="."]
+script = ExtResource( 10 )
+
+[node name="CameraFollow" type="Camera2D" parent="Players"]
+position = Vector2( 322, 269 )
+current = true
+limit_left = 0
+limit_right = 640
+limit_bottom = 480
+limit_smoothed = true
+script = ExtResource( 8 )
+follow_target_path = NodePath("../Jeff")
+
+[node name="Jack" parent="Players" instance=ExtResource( 2 )]
+position = Vector2( 76, 393 )
+
+[node name="Jeff" parent="Players" instance=ExtResource( 4 )]
+position = Vector2( 146, 397 )
+
+[node name="Ed" parent="Players" instance=ExtResource( 7 )]
