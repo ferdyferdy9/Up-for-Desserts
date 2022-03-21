@@ -15,8 +15,12 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("switch"):
+	if Input.is_action_just_pressed("switch_forward"):
 		idx = (idx + 1 + 3) % 3
+		$AudioStreamPlayer.play()
+		update_players()
+	if Input.is_action_just_pressed("switch_backward"):
+		idx = (idx - 1 + 3) % 3
 		$AudioStreamPlayer.play()
 		update_players()
 

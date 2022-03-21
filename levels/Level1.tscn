@@ -57,3 +57,24 @@ theme = ExtResource( 8 )
 custom_fonts/font = ExtResource( 7 )
 text = "Once everyone is here.
 Press the UP key"
+
+[node name="Label2" type="Label" parent="." index="5"]
+margin_left = 102.0
+margin_top = 168.0
+margin_right = 301.0
+margin_bottom = 218.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 7 )
+text = "Press A/S to switch
+characters"
+align = 2
+
+[node name="Label3" type="Label" parent="." index="6"]
+margin_left = 18.0
+margin_top = 446.0
+margin_right = 608.0
+margin_bottom = 496.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 7 )
+text = "Arrow keys to move                         Press Z to Jump"
+align = 2

@@ -47,3 +47,4 @@ func _on_Options_Menu_selected(idx) -> void:
 			title_menu.index = 1
 			options_menu.is_active = false
 			SoundManager.play_ui_cancel()
+			AudioManager.save()

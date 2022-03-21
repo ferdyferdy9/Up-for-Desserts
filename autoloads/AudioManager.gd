@@ -7,11 +7,37 @@ var master_volume = 80 setget set_master
 var music_volume = 80 setget set_music
 var sound_volume = 100 setget set_sound
 
+var config_data_path = "user://config.res"
+var config_data:AudioResource
+
 
 func _ready():
+	var dir = Directory.new()
+	if not dir.file_exists(config_data_path):
+		config_data = AudioResource.new()
+		save()
+	else:
+		config_data = ResourceLoader.load(config_data_path) as AudioResource
+		if config_data == null:
+			config_data = AudioResource.new()
+			save()
+		else:
+			master_volume = config_data.master_volume
+			music_volume = config_data.music_volume
+			sound_volume = config_data.sound_volume
+			OS.window_fullscreen = config_data.full_screen
+	
 	self.master_volume = master_volume
 	self.music_volume = music_volume
 	self.sound_volume = sound_volume
+
+
+func save() -> void:
+	config_data.master_volume = master_volume
+	config_data.music_volume = music_volume
+	config_data.sound_volume = sound_volume
+	config_data.full_screen = OS.window_fullscreen
+	ResourceSaver.save(config_data_path, config_data)
 
 
 func convertDB2Volume(input):
