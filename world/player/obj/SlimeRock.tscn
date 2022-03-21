@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://world/player/obj/SlimeRock.gd" type="Script" id=1]
 [ext_resource path="res://assets/characters/slime-stone_0000.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/characters/slime-stand.png" type="Texture" id=4]
 [ext_resource path="res://assets/sfx/slime rock hit ground.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/sfx/slime to stone.ogg" type="AudioStream" id=6]
+[ext_resource path="res://world/util/Area2DPlus.gd" type="Script" id=7]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -266,6 +267,9 @@ shader_param/color_value = Color( 1, 1, 1, 1 )
 shader_param/trail_divisor = 1
 shader_param/gravity = Vector3( 0, -1e-06, 0 )
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 24, 2 )
+
 [node name="SlimeRock" type="KinematicBody2D" groups=["Movable", "Pickable", "Rock"]]
 collision_mask = 257
 script = ExtResource( 1 )
@@ -315,6 +319,18 @@ cast_to = Vector2( 0, 26 )
 position = Vector2( 18, 0 )
 enabled = true
 cast_to = Vector2( 0, 26 )
+
+[node name="PlatformDetection" type="Area2D" parent="."]
+position = Vector2( 0, 24 )
+collision_layer = 256
+collision_mask = 256
+input_pickable = false
+monitorable = false
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformDetection"]
+position = Vector2( 0, 2 )
+shape = SubResource( 5 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]

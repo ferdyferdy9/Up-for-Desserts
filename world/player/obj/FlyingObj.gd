@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 		attached_obj.is_override_animation = true
 		attached_obj.anim_player.play("thrown")
 		attached_obj.facing_dir.x = dir.x
+		attached_obj.is_override_facing = true
 
 
 func _physics_process(delta: float) -> void:
@@ -23,6 +24,7 @@ func _physics_process(delta: float) -> void:
 	if is_colliding_platform() or move_and_collide(dir.normalized() * speed * delta):
 		if attached_obj.is_in_group("Player"):
 			attached_obj.is_override_animation = false
+			attached_obj.is_override_facing = false
 		emit_signal("be_destroyed", attached_obj)
 		queue_free()
 

@@ -13,6 +13,8 @@ func _process(delta: float) -> void:
 			if _ed.grabbed_body == self:
 				_ed.grabbed_body = null
 				_ed.remove_collision_exception_with(self)
+				is_override_facing = false
+				is_override_animation = false
 				set_physics_process(true)
 				jump()
 

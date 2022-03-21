@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-var particle_scene = preload("res://world/objects/BreakParticle.tscn")
+var particle_scene = preload("res://world/objects/_internal/BreakParticle.tscn")
 
 func destroy() -> void:
 	var particle = particle_scene.instance()

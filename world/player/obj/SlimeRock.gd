@@ -5,6 +5,8 @@ onready var particles = $Particles2D
 
 onready var cast = $RayCast2D
 onready var cast2 = $RayCast2D2
+onready var platform_detection = $PlatformDetection
+onready var _ed = get_tree().get_nodes_in_group("Ed")[0]
 
 var gravity:float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var linear_velocity:Vector2
@@ -21,6 +23,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if timer.time_left == 0:
 		update_physics_platformer(delta)
+	else:
+		move_and_slide_with_snap(Vector2.ZERO, Vector2.DOWN * 2, Vector2.UP)
 
 
 func update_physics_platformer(delta:float) -> void:
@@ -32,9 +36,18 @@ func update_physics_platformer(delta:float) -> void:
 	
 	var last_pos = position
 	linear_velocity = move_and_slide_with_snap(linear_velocity, Vector2.DOWN * 2, Vector2.UP)
-	position.x -= get_floor_velocity().x * delta
-	if is_on_floor() and not is_on_wall():
-		position.x = last_pos.x
+	
+	
+	var is_belt:bool = false
+	for i in range(get_slide_count()):
+		var b = get_slide_collision(i).collider
+		if b.is_in_group("Belt") or b.is_in_group("Moving"):
+			is_belt = true
+	
+	if not is_belt:
+		position.x -= get_floor_velocity().x * delta
+		if is_on_floor() and not is_on_wall():
+			position.x = last_pos.x
 	
 	for i in range(get_slide_count()):
 		var b = get_slide_collision(i).collider
@@ -52,7 +65,9 @@ func update_physics_platformer(delta:float) -> void:
 
 
 func custom_is_on_floor() -> bool:
-	return cast.is_colliding() or cast2.is_colliding() or is_on_floor()
+	if _ed.grabbed_body == self:
+		return false
+	return platform_detection.is_colliding() or cast.is_colliding() or cast2.is_colliding() or is_on_floor()
 
 
 func _on_Timer_timeout() -> void:

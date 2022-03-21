@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var dir:Vector2 = Vector2.RIGHT
-var hit_scene = preload("res://world/objects/Hit.tscn")
+var hit_scene = preload("res://world/objects/_internal/Hit.tscn")
 
 
 func _ready() -> void:

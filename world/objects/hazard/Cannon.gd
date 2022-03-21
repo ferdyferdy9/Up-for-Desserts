@@ -8,8 +8,8 @@ export(bool) var is_up:bool = false
 onready var timer = $Timer
 onready var anim_player = $AnimationPlayer
 
-var poof_scene = preload("res://world/objects/Poof.tscn")
-var cannonball_scene = preload("res://world/objects/CannonBall.tscn")
+var poof_scene = preload("res://world/objects/_internal/Poof.tscn")
+var cannonball_scene = preload("res://world/objects/_internal/CannonBall.tscn")
 
 
 func _ready() -> void:

@@ -24,8 +24,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if _ed.grabbed_body == parent:
 		parent.is_override_facing = true
-	elif not is_switch:
-		parent.is_override_facing = false
 	
 	if is_swing:
 		parent.is_override_animation = true
@@ -80,6 +78,7 @@ func shoot():
 	else:
 		parent.anim_player.play("shoot_side")
 	parent.is_override_animation = true
+	parent.is_override_facing = true
 	
 	shot_delay_timer.start()
 	yield(shot_delay_timer, "timeout")

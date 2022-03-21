@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/objects/pulley-inactive.png" type="Texture" id=1]
-[ext_resource path="res://world/objects/Switch.gd" type="Script" id=2]
+[ext_resource path="res://world/objects/button_switches/Pulley.gd" type="Script" id=2]
 [ext_resource path="res://assets/objects/pulley-active.png" type="Texture" id=3]
 [ext_resource path="res://assets/sfx/pulley.wav" type="AudioStream" id=4]
 
@@ -14,9 +14,9 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 13.25, 22 )
+extents = Vector2( 10.75, 22 )
 
-[node name="Switch" type="KinematicBody2D" groups=["Switch"]]
+[node name="Pulley" type="KinematicBody2D" groups=["Switch"]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
@@ -25,7 +25,7 @@ scale = Vector2( 0.5, 1 )
 frames = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.75, 0 )
+position = Vector2( 1.75, 0 )
 shape = SubResource( 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

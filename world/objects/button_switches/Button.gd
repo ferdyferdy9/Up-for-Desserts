@@ -2,7 +2,6 @@ extends Area2D
 
 export(Array, NodePath) var target_paths:Array
 export(bool) var start_active:bool
-export(bool) var hold_button:bool
 
 onready var sprite = $Sprite
 
@@ -24,8 +23,6 @@ func _process(delta: float) -> void:
 	if _active != _last_active:
 		if _active:
 			activate()
-		elif hold_button:
-			deactivate()
 	_last_active = _active
 
 
