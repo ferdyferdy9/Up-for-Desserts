@@ -8,6 +8,11 @@ const door_sfx = preload("res://assets/sfx/door.ogg")
 const grab_sfx = preload("res://assets/sfx/grab.wav")
 const throw_sfx = preload("res://assets/sfx/throw.wav")
 const jump_sfx = preload("res://assets/sfx/jump.ogg")
+const slime_drop_sfx = preload("res://assets/sfx/slime rock hit ground.ogg")
+
+
+func play_slime_drop_sfx() -> void:
+	play_audio(slime_drop_sfx)
 
 
 func play_throw() -> void:
@@ -48,6 +53,7 @@ func play_audio(stream):
 	audio_player.stream = stream
 	audio_player.autoplay = true
 	audio_player.bus = "SFX"
+	audio_player.pause_mode = PAUSE_MODE_PROCESS
 	add_child(audio_player)
 	audio_player.play()
 	

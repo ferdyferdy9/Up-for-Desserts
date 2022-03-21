@@ -37,7 +37,7 @@ extents = Vector2( 17, 18 )
 extents = Vector2( 24, 3 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 14, 3.5 )
+extents = Vector2( 4.5, 4.25 )
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -381,7 +381,7 @@ show_behind_parent = true
 position = Vector2( 5, 8 )
 z_index = -20
 script = ExtResource( 2 )
-max_arrow_dist = 320.0
+max_arrow_dist = 220.0
 
 [node name="Rope" type="Sprite" parent="Grapple"]
 texture = ExtResource( 5 )
@@ -400,7 +400,7 @@ script = ExtResource( 8 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grapple/Arrow"]
-position = Vector2( 0, 2 )
+position = Vector2( 10, 1 )
 shape = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="Grapple"]

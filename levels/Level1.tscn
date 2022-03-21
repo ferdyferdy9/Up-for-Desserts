@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://world/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/objects/box/Movable.tscn" type="PackedScene" id=2]
@@ -8,13 +8,6 @@
 [ext_resource path="res://levels/Level2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/fonts/Otsutome24.tres" type="DynamicFont" id=7]
 [ext_resource path="res://default_theme.tres" type="Theme" id=8]
-[ext_resource path="res://world/objects/activatables/SlideDoor.tscn" type="PackedScene" id=9]
-[ext_resource path="res://world/objects/activatables/ConveyorBelt.tscn" type="PackedScene" id=10]
-[ext_resource path="res://world/objects/button_switches/PulleyTimed.tscn" type="PackedScene" id=11]
-[ext_resource path="res://world/objects/button_switches/PressurePlate.tscn" type="PackedScene" id=12]
-[ext_resource path="res://world/objects/activatables/WindCurrent.tscn" type="PackedScene" id=13]
-[ext_resource path="res://world/objects/activatables/MovingPlatform.tscn" type="PackedScene" id=14]
-[ext_resource path="res://world/objects/OneWay.tscn" type="PackedScene" id=15]
 
 [node name="Level1" instance=ExtResource( 1 )]
 
@@ -25,7 +18,59 @@ modulate = Color( 0.737255, 0.737255, 0.737255, 1 )
 tile_data = PoolIntArray( -917505, 0, 0, -983040, 0, 1, -983039, 0, 1, -983038, 0, 1, -983037, 0, 1, -983036, 0, 1, -983035, 0, 1, -983034, 0, 1, -983033, 0, 1, -983032, 0, 1, -983031, 0, 1, -983030, 0, 1, -983029, 0, 1, -983028, 0, 1, -983027, 0, 1, -983026, 0, 2, -851969, 0, 65536, -917504, 0, 131078, -917503, 0, 262144, -917502, 0, 131073, -917501, 0, 131073, -917500, 0, 131073, -917499, 0, 131073, -917498, 0, 131073, -917497, 0, 131073, -917496, 0, 131073, -917495, 0, 131073, -917494, 0, 131073, -917493, 0, 131073, -917492, 0, 262146, -917491, 0, 131079, -917490, 0, 65538, -786433, 0, 65536, -851968, 0, 196610, -851955, 0, 262145, -851954, 0, 65538, -720897, 0, 65536, -786432, 0, 65538, -786419, 0, 65536, -786418, 0, 65538, -655361, 0, 65536, -720896, 0, 65538, -720883, 0, 65536, -720882, 0, 65538, -589825, 0, 65536, -655360, 0, 65538, -655347, 0, 65536, -655346, 0, 65538, -524289, 0, 65536, -589824, 0, 65538, -589811, 0, 65536, -589810, 0, 65538, -458753, 0, 65536, -524288, 0, 65538, -524275, 0, 65536, -524274, 0, 65538, -393217, 0, 65536, -458752, 0, 65538, -458739, 0, 65536, -458738, 0, 65538, -327681, 0, 65536, -393216, 0, 65538, -393203, 0, 65536, -393202, 0, 65538, -262145, 0, 65536, -327680, 0, 65538, -327667, 0, 65536, -327666, 0, 65538, -196609, 0, 65536, -262144, 0, 65538, -262131, 0, 65536, -262130, 0, 65538, -131073, 0, 65536, -196608, 0, 65538, -196595, 0, 65536, -196594, 0, 65538, -65537, 0, 65536, -131072, 0, 65538, -131059, 0, 65536, -131058, 0, 65538, -1, 0, 65536, -65536, 0, 65538, -65523, 0, 65536, -65522, 0, 65538, 65535, 0, 65536, 0, 0, 65538, 13, 0, 65536, 14, 0, 65538, 131071, 0, 65536, 65536, 0, 65538, 65549, 0, 65536, 65550, 0, 65538, 196607, 0, 65536, 131072, 0, 196608, 131085, 0, 65536, 131086, 0, 65538, 262143, 0, 65536, 196608, 0, 196614, 196609, 0, 196611, 196610, 0, 1, 196611, 0, 1, 196612, 0, 1, 196613, 0, 1, 196614, 0, 2, 196621, 0, 65536, 196622, 0, 65538, 327679, 0, 65536, 262144, 0, 131078, 262145, 0, 262144, 262146, 0, 131073, 262147, 0, 131073, 262148, 0, 262146, 262149, 0, 131079, 262150, 0, 65538, 262157, 0, 65536, 262158, 0, 65538, 393215, 0, 65536, 327680, 0, 196610, 327685, 0, 262145, 327686, 0, 65538, 327693, 0, 65536, 327694, 0, 65538, 458751, 0, 65536, 393216, 0, 65538, 393221, 0, 131072, 393222, 0, 131074, 393229, 0, 65536, 393230, 0, 65538, 524287, 0, 65536, 458752, 0, 65538, 458765, 0, 65536, 458766, 0, 65538, 589823, 0, 65536, 524288, 0, 196608, 524301, 0, 262147, 524302, 0, 65538, 655359, 0, 65536, 589824, 0, 196614, 589825, 0, 196611, 589826, 0, 1, 589827, 0, 1, 589828, 0, 1, 589829, 0, 1, 589830, 0, 1, 589831, 0, 1, 589832, 0, 1, 589833, 0, 1, 589834, 0, 1, 589835, 0, 1, 589836, 0, 196609, 589837, 0, 196615, 589838, 0, 65538, 720895, 0, 131072, 655360, 0, 131073, 655361, 0, 131073, 655362, 0, 131073, 655363, 0, 131073, 655364, 0, 131073, 655365, 0, 131073, 655366, 0, 131073, 655367, 0, 131073, 655368, 0, 131073, 655369, 0, 131073, 655370, 0, 131073, 655371, 0, 131073, 655372, 0, 131073, 655373, 0, 131073, 655374, 0, 131074 )
 
 [node name="PlatformTile" parent="Tiles/PlatformGenerator" index="0"]
-tile_data = PoolIntArray( -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 0, 0, -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 0, 0, -262133, 0, 0, -262132, 0, 0, -131061, 0, 0, -131060, 0, 0, -65528, 0, 0, -65527, 0, 0, 5, 0, 0, 6, 0, 0, 65538, 0, 0, 65539, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0 )
+tile_data = PoolIntArray( -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 0, 0, -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 0, 0, -262133, 0, 0, -262132, 0, 0, -131062, 0, 0, -131061, 0, 0, -131060, 0, 0, -65532, 0, 0, -65531, 0, 0, -65529, 0, 0, -65528, 0, 0, 65540, 0, 0, 65541, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0 )
+
+[node name="Label" type="Label" parent="." index="4"]
+margin_left = 40.0
+margin_top = -331.0
+margin_right = 267.0
+margin_bottom = -281.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 7 )
+text = "Once everyone is here.
+Press the UP key"
+
+[node name="Label2" type="Label" parent="." index="5"]
+margin_left = 398.0
+margin_top = -325.0
+margin_right = 597.0
+margin_bottom = -275.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 7 )
+text = "Press A/S to switch
+characters"
+align = 2
+
+[node name="Label4" type="Label" parent="." index="6"]
+margin_left = 102.0
+margin_top = 164.0
+margin_right = 301.0
+margin_bottom = 214.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 7 )
+text = "Press Esc / Enter
+to Pause"
+align = 2
+
+[node name="Label5" type="Label" parent="." index="7"]
+margin_left = 162.0
+margin_top = -408.0
+margin_right = 481.0
+margin_bottom = -358.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 7 )
+text = "This game has controller support"
+align = 2
+
+[node name="Label3" type="Label" parent="." index="8"]
+margin_left = 18.0
+margin_top = 446.0
+margin_right = 608.0
+margin_bottom = 496.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 7 )
+text = "Arrow keys to move                         Press Z to Jump"
+align = 2
 
 [node name="Jeff" parent="Players" index="1"]
 position = Vector2( 138, 395 )
@@ -45,80 +90,9 @@ position = Vector2( 584, 358 )
 [node name="Target" parent="Objects" index="3" instance=ExtResource( 3 )]
 position = Vector2( 127, -109 )
 
-[node name="Target2" parent="Objects" index="4" instance=ExtResource( 3 )]
-position = Vector2( 415, -291 )
-
-[node name="Breakable" parent="Objects" index="5" instance=ExtResource( 4 )]
+[node name="Breakable" parent="Objects" index="4" instance=ExtResource( 4 )]
 position = Vector2( 57, 122 )
 
-[node name="Door" parent="Objects" index="6" instance=ExtResource( 5 )]
+[node name="Door" parent="Objects" index="5" instance=ExtResource( 5 )]
 position = Vector2( 104, -223 )
 next_level = ExtResource( 6 )
-
-[node name="Debug" type="Node2D" parent="Objects" index="7"]
-
-[node name="PressurePlate" parent="Objects/Debug" index="0" instance=ExtResource( 12 )]
-position = Vector2( 291, 121 )
-target_paths = [ NodePath("../WindCurrent"), NodePath("../SlideDoor"), NodePath("../MovingPlatform"), NodePath("../ConveyorBelt") ]
-
-[node name="WindCurrent" parent="Objects/Debug" index="1" instance=ExtResource( 13 )]
-position = Vector2( 217, 133 )
-
-[node name="SlideDoor" parent="Objects/Debug" index="2" instance=ExtResource( 9 )]
-position = Vector2( 99, 79 )
-
-[node name="MovingPlatform" parent="Objects/Debug" index="3" instance=ExtResource( 14 )]
-position = Vector2( 537, 137 )
-
-[node name="ConveyorBelt" parent="Objects/Debug" index="4" instance=ExtResource( 10 )]
-position = Vector2( 391, 66 )
-
-[node name="PulleyTimed" parent="Objects/Debug" index="5" instance=ExtResource( 11 )]
-position = Vector2( 595, -227 )
-target_paths = [ NodePath("../SlideDoor2") ]
-
-[node name="SlideDoor2" parent="Objects/Debug" index="6" instance=ExtResource( 9 )]
-position = Vector2( 544, -349 )
-rotation = -1.57079
-
-[node name="OneWay" parent="Objects/Debug" index="7" instance=ExtResource( 15 )]
-position = Vector2( 301, -220 )
-
-[node name="OneWay2" parent="Objects/Debug" index="8" instance=ExtResource( 15 )]
-position = Vector2( 253, -270 )
-rotation = -3.13584
-
-[node name="OneWay3" parent="Objects/Debug" index="9" instance=ExtResource( 15 )]
-position = Vector2( 346, -24 )
-rotation = -1.56816
-
-[node name="Label" type="Label" parent="." index="4"]
-margin_left = 40.0
-margin_top = -331.0
-margin_right = 267.0
-margin_bottom = -281.0
-theme = ExtResource( 8 )
-custom_fonts/font = ExtResource( 7 )
-text = "Once everyone is here.
-Press the UP key"
-
-[node name="Label2" type="Label" parent="." index="5"]
-margin_left = 102.0
-margin_top = 168.0
-margin_right = 301.0
-margin_bottom = 218.0
-theme = ExtResource( 8 )
-custom_fonts/font = ExtResource( 7 )
-text = "Press A/S to switch
-characters"
-align = 2
-
-[node name="Label3" type="Label" parent="." index="6"]
-margin_left = 18.0
-margin_top = 446.0
-margin_right = 608.0
-margin_bottom = 496.0
-theme = ExtResource( 8 )
-custom_fonts/font = ExtResource( 7 )
-text = "Arrow keys to move                         Press Z to Jump"
-align = 2

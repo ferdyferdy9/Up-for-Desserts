@@ -13,7 +13,8 @@ func _process(delta: float) -> void:
 	if attached_obj and attached_obj.is_in_group("Player"):
 		attached_obj.is_override_animation = true
 		attached_obj.anim_player.play("thrown")
-		attached_obj.facing_dir.x = dir.x
+		if dir.x != 0:
+			attached_obj.facing_dir.x = dir.x
 		attached_obj.is_override_facing = true
 
 

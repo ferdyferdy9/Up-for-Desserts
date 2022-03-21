@@ -19,8 +19,10 @@ func _process(delta: float) -> void:
 func _on_Title_Menu_selected(idx) -> void:
 	match(idx):
 		0: # Start
-			get_tree().change_scene_to(start_scene)
 			SoundManager.play_ui_accept()
+			Transition.fade_out_with_pause()
+			yield(Transition, "fade_out_finished")
+			get_tree().change_scene_to(start_scene)
 		1: # Options
 			navigator.index = 1
 			title_menu.is_active = false

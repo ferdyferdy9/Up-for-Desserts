@@ -17,9 +17,10 @@ func _physics_process(delta: float) -> void:
 				b.linear_velocity += wind_dir * wind_strength * 60 * delta
 				
 				var projection:Vector2 = b.linear_velocity.project(wind_dir)
-				var diff:float = max_speed - projection.length() 
-				if diff < 0:
-					b.linear_velocity += wind_dir * diff
+				if projection.dot(wind_dir) > 0:
+					var diff:float = max_speed - projection.length() 
+					if diff < 0:
+						b.linear_velocity += wind_dir * diff
 	else:
 		particles.emitting = false
 

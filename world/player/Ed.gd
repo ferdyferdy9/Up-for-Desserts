@@ -35,18 +35,18 @@ func _process(delta: float) -> void:
 			isThrowDown = isThrowDown or (Input.is_action_pressed("ui_down") and Input.is_action_just_pressed("attack"))
 			if isThrowDown and not is_on_floor():
 				if grabbed_body != null:
-					create_thrown_body(Vector2.DOWN)
 					jump()
 					is_override_animation = true
 					anim_player.play("throw_down")
 					SoundManager.play_throw()
+					create_thrown_body(Vector2.DOWN)
 			elif Input.is_action_just_pressed("attack"):
 				if grabbed_body == null:
+					is_override_animation = true
+					anim_player.play("grab")
+					SoundManager.play_grab()
 					grabbed_body = get_closest()
 					if grabbed_body:
-						is_override_animation = true
-						anim_player.play("grab")
-						SoundManager.play_grab()
 						grabbed_body.linear_velocity = Vector2.ZERO
 						grabbed_body.set_physics_process(false)
 						grabbed_body.add_collision_exception_with(self)
@@ -67,12 +67,14 @@ func _process(delta: float) -> void:
 		grab_area.scale.x = 1
 		ray_cast.scale.x = 1
 		if grabbed_body and grabbed_body.is_in_group("Player"):
-			grabbed_body.facing_dir.x = 1
+			if is_controlled:
+				grabbed_body.facing_dir.x = 1
 	elif facing_dir.x < 0:
 		grab_area.scale.x = -1
 		ray_cast.scale.x = -1
 		if grabbed_body and grabbed_body.is_in_group("Player"):
-			grabbed_body.facing_dir.x = -1
+			if is_controlled:
+				grabbed_body.facing_dir.x = -1
 
 
 func _physics_process(delta:float) -> void:

@@ -7,6 +7,10 @@ export(float) var speed:float = 4
 onready var follow_target:Node2D = get_node_or_null(follow_target_path)
 
 
+func _ready() -> void:
+	current = true
+
+
 func _process(delta: float) -> void:
 	if follow_target == null:
 		return

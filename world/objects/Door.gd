@@ -7,6 +7,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_up"):
 		if player_count() > 2:
 			SoundManager.play_door()
+			Transition.fade_out_with_pause()
+			yield(Transition, "fade_out_finished")
 			get_tree().change_scene_to(next_level)
 
 

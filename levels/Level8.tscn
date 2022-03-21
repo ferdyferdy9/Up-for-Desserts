@@ -1,0 +1,178 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://world/objects/Target.tscn" type="PackedScene" id=1]
+[ext_resource path="res://world/World.tscn" type="PackedScene" id=2]
+[ext_resource path="res://world/objects/box/Movable.tscn" type="PackedScene" id=3]
+[ext_resource path="res://world/objects/box/Breakable.tscn" type="PackedScene" id=4]
+[ext_resource path="res://world/objects/Swing.tscn" type="PackedScene" id=5]
+[ext_resource path="res://world/objects/Door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://world/End.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/fonts/Otsutome24.tres" type="DynamicFont" id=9]
+[ext_resource path="res://default_theme.tres" type="Theme" id=10]
+[ext_resource path="res://world/objects/button_switches/Button.tscn" type="PackedScene" id=11]
+[ext_resource path="res://world/objects/activatables/WindCurrent.tscn" type="PackedScene" id=12]
+[ext_resource path="res://world/objects/button_switches/PressurePlate.tscn" type="PackedScene" id=13]
+[ext_resource path="res://world/objects/activatables/SlideDoor.tscn" type="PackedScene" id=14]
+
+[node name="Level5" instance=ExtResource( 2 )]
+
+[node name="Solid" parent="Tiles" index="0"]
+tile_data = PoolIntArray( -2293761, 0, 0, -2359296, 0, 1, -2359295, 0, 1, -2359294, 0, 1, -2359293, 0, 1, -2359292, 0, 1, -2359291, 0, 1, -2359290, 0, 1, -2359289, 0, 1, -2359288, 0, 1, -2359287, 0, 1, -2359286, 0, 1, -2359285, 0, 1, -2359284, 0, 1, -2359283, 0, 1, -2359282, 0, 2, -2228225, 0, 65536, -2293760, 0, 65537, -2293759, 0, 65537, -2293758, 0, 65537, -2293757, 0, 65537, -2293756, 0, 65537, -2293755, 0, 65537, -2293754, 0, 65537, -2293753, 0, 65537, -2293752, 0, 65537, -2293751, 0, 65537, -2293750, 0, 65537, -2293749, 0, 65537, -2293748, 0, 65537, -2293747, 0, 65537, -2293746, 0, 65538, -2162689, 0, 65536, -2228224, 0, 65537, -2228223, 0, 65537, -2228222, 0, 65537, -2228221, 0, 65537, -2228220, 0, 65537, -2228219, 0, 65537, -2228218, 0, 65537, -2228217, 0, 65537, -2228216, 0, 65537, -2228215, 0, 65537, -2228214, 0, 65537, -2228213, 0, 65537, -2228212, 0, 65537, -2228211, 0, 65537, -2228210, 0, 65538, -2097153, 0, 65536, -2162688, 0, 65537, -2162687, 0, 65537, -2162686, 0, 65537, -2162685, 0, 65537, -2162684, 0, 65537, -2162683, 0, 65537, -2162682, 0, 65537, -2162681, 0, 65537, -2162680, 0, 65537, -2162679, 0, 65537, -2162678, 0, 65537, -2162677, 0, 65537, -2162676, 0, 65537, -2162675, 0, 65537, -2162674, 0, 65538, -2031617, 0, 65536, -2097152, 0, 65537, -2097151, 0, 65537, -2097150, 0, 131073, -2097149, 0, 131073, -2097148, 0, 131073, -2097147, 0, 131073, -2097146, 0, 131073, -2097145, 0, 131073, -2097144, 0, 131073, -2097143, 0, 131073, -2097142, 0, 131073, -2097141, 0, 131073, -2097140, 0, 262146, -2097139, 0, 131079, -2097138, 0, 65538, -1966081, 0, 65536, -2031616, 0, 65537, -2031615, 0, 65538, -2031603, 0, 262145, -2031602, 0, 65538, -1900545, 0, 65536, -1966080, 0, 65537, -1966079, 0, 65538, -1966067, 0, 65536, -1966066, 0, 65538, -1835009, 0, 65537, -1900544, 0, 65537, -1900543, 0, 65538, -1900531, 0, 65536, -1900530, 0, 65538, -1769473, 0, 65537, -1835008, 0, 65537, -1835007, 0, 65538, -1834999, 0, 0, -1834998, 0, 2, -1834995, 0, 65536, -1834994, 0, 65538, -1703937, 0, 65537, -1769472, 0, 65537, -1769471, 0, 65538, -1769464, 0, 0, -1769463, 0, 196615, -1769462, 0, 65538, -1769459, 0, 65536, -1769458, 0, 65538, -1638401, 0, 65536, -1703936, 0, 65537, -1703935, 0, 65538, -1703929, 0, 0, -1703928, 0, 196615, -1703927, 0, 65537, -1703926, 0, 196608, -1703923, 0, 262147, -1703922, 0, 65538, -1572865, 0, 65536, -1638400, 0, 65537, -1638399, 0, 196608, -1638393, 0, 65536, -1638392, 0, 65537, -1638391, 0, 65537, -1638390, 0, 196614, -1638389, 0, 196611, -1638388, 0, 196609, -1638387, 0, 196615, -1638386, 0, 65538, -1507329, 0, 65536, -1572864, 0, 65537, -1572863, 0, 196614, -1572862, 0, 196611, -1572861, 0, 2, -1572857, 0, 65536, -1572856, 0, 65537, -1572855, 0, 65537, -1572854, 0, 65537, -1572853, 0, 65537, -1572852, 0, 65537, -1572851, 0, 65537, -1572850, 0, 65538, -1441793, 0, 65536, -1507328, 0, 131078, -1507327, 0, 262144, -1507326, 0, 131073, -1507325, 0, 131074, -1507321, 0, 131072, -1507320, 0, 131073, -1507319, 0, 131073, -1507318, 0, 131073, -1507317, 0, 131073, -1507316, 0, 262146, -1507315, 0, 131079, -1507314, 0, 65538, -1376257, 0, 65536, -1441792, 0, 196610, -1441779, 0, 262145, -1441778, 0, 65538, -1310721, 0, 65536, -1376256, 0, 65538, -1376243, 0, 65536, -1376242, 0, 65538, -1245185, 0, 65536, -1310720, 0, 65538, -1310707, 0, 65536, -1310706, 0, 65538, -1179649, 0, 65536, -1245184, 0, 65538, -1245180, 0, 0, -1245179, 0, 1, -1245178, 0, 1, -1245177, 0, 2, -1245171, 0, 65536, -1245170, 0, 65538, -1114113, 0, 65536, -1179648, 0, 65538, -1179644, 0, 131072, -1179643, 0, 262146, -1179642, 0, 131079, -1179641, 0, 65538, -1179635, 0, 65536, -1179634, 0, 65538, -1048577, 0, 65536, -1114112, 0, 65538, -1114106, 0, 262145, -1114105, 0, 65538, -1114099, 0, 65536, -1114098, 0, 65538, -983041, 0, 65536, -1048576, 0, 65538, -1048570, 0, 65536, -1048569, 0, 65538, -1048563, 0, 65536, -1048562, 0, 65538, -917505, 0, 65536, -983040, 0, 65538, -983036, 0, 131076, -983034, 0, 65536, -983033, 0, 65538, -983027, 0, 65536, -983026, 0, 65538, -851969, 0, 65536, -917504, 0, 65538, -917500, 0, 196612, -917498, 0, 65536, -917497, 0, 65538, -917491, 0, 65536, -917490, 0, 65538, -786433, 0, 65536, -851968, 0, 65538, -851964, 0, 196612, -851962, 0, 65536, -851961, 0, 65538, -851955, 0, 65536, -851954, 0, 65538, -720897, 0, 65536, -786432, 0, 65538, -786428, 0, 196612, -786426, 0, 65536, -786425, 0, 65538, -786419, 0, 262147, -786418, 0, 65538, -655361, 0, 65536, -720896, 0, 65538, -720892, 0, 262148, -720890, 0, 131072, -720889, 0, 131074, -720886, 0, 0, -720885, 0, 1, -720884, 0, 196609, -720883, 0, 196615, -720882, 0, 65538, -589825, 0, 65536, -655360, 0, 65538, -655350, 0, 131072, -655349, 0, 131073, -655348, 0, 262146, -655347, 0, 131079, -655346, 0, 65538, -524289, 0, 65536, -589824, 0, 65538, -589811, 0, 262145, -589810, 0, 65538, -458753, 0, 65536, -524288, 0, 65538, -524285, 0, 131076, -524275, 0, 65536, -524274, 0, 65538, -393217, 0, 65536, -458752, 0, 196608, -458749, 0, 196612, -458743, 0, 0, -458742, 0, 2, -458739, 0, 65536, -458738, 0, 65538, -327681, 0, 65536, -393216, 0, 65537, -393215, 0, 5, -393214, 0, 5, -393213, 0, 131074, -393207, 0, 65536, -393206, 0, 65538, -393203, 0, 65536, -393202, 0, 65538, -262145, 0, 65536, -327680, 0, 196610, -327671, 0, 65536, -327670, 0, 65538, -327667, 0, 65536, -327666, 0, 65538, -196609, 0, 65536, -262144, 0, 65538, -262135, 0, 131072, -262134, 0, 131074, -262131, 0, 65536, -262130, 0, 65538, -131073, 0, 65536, -196608, 0, 65538, -196595, 0, 65536, -196594, 0, 65538, -65537, 0, 65536, -131072, 0, 65538, -131059, 0, 262147, -131058, 0, 65538, -1, 0, 65536, -65536, 0, 65538, -65525, 0, 0, -65524, 0, 196609, -65523, 0, 196615, -65522, 0, 65538, 65535, 0, 65536, 0, 0, 65538, 11, 0, 65536, 12, 0, 65537, 13, 0, 65537, 14, 0, 65538, 131071, 0, 65536, 65536, 0, 65538, 65547, 0, 65536, 65548, 0, 65537, 65549, 0, 65537, 65550, 0, 65538, 196607, 0, 65536, 131072, 0, 65538, 131083, 0, 65536, 131084, 0, 65537, 131085, 0, 65537, 131086, 0, 65538, 262143, 0, 65536, 196608, 0, 65538, 196611, 0, 0, 196612, 0, 1, 196613, 0, 1, 196614, 0, 1, 196615, 0, 1, 196616, 0, 2, 196619, 0, 65536, 196620, 0, 65537, 196621, 0, 65537, 196622, 0, 65538, 327679, 0, 65536, 262144, 0, 65538, 262147, 0, 131072, 262148, 0, 131073, 262149, 0, 131073, 262150, 0, 131073, 262151, 0, 131073, 262152, 0, 131074, 262153, 0, 5, 262154, 0, 5, 262155, 0, 131072, 262156, 0, 262146, 262157, 0, 131079, 262158, 0, 65538, 393215, 0, 65536, 327680, 0, 65538, 327693, 0, 262145, 327694, 0, 65538, 458751, 0, 65536, 393216, 0, 196608, 393229, 0, 262145, 393230, 0, 65538, 524287, 0, 65536, 458752, 0, 196614, 458753, 0, 196611, 458754, 0, 2, 458765, 0, 65536, 458766, 0, 65538, 589823, 0, 65536, 524288, 0, 65537, 524289, 0, 65537, 524290, 0, 65538, 524298, 0, 0, 524299, 0, 2, 524301, 0, 262147, 524302, 0, 65538, 655359, 0, 65536, 589824, 0, 65537, 589825, 0, 65537, 589826, 0, 196608, 589834, 0, 262147, 589835, 0, 196614, 589836, 0, 1, 589837, 0, 196615, 589838, 0, 65538, 720895, 0, 65536, 655360, 0, 65537, 655361, 0, 65537, 655362, 0, 196614, 655363, 0, 196611, 655364, 0, 1, 655365, 0, 1, 655366, 0, 1, 655367, 0, 1, 655368, 0, 1, 655369, 0, 196609, 655370, 0, 196615, 655371, 0, 65537, 655372, 0, 65537, 655373, 0, 65537, 655374, 0, 65538, 786431, 0, 65536, 720896, 0, 65537, 720897, 0, 65537, 720898, 0, 65537, 720899, 0, 65537, 720900, 0, 65537, 720901, 0, 65537, 720902, 0, 65537, 720903, 0, 65537, 720904, 0, 65537, 720905, 0, 65537, 720906, 0, 65537, 720907, 0, 65537, 720908, 0, 65537, 720909, 0, 65537, 720910, 0, 65538, 851967, 0, 131072, 786432, 0, 131073, 786433, 0, 131073, 786434, 0, 131073, 786435, 0, 131073, 786436, 0, 131073, 786437, 0, 131073, 786438, 0, 131073, 786439, 0, 131073, 786440, 0, 131073, 786441, 0, 131073, 786442, 0, 131073, 786443, 0, 131073, 786444, 0, 131073, 786445, 0, 131073, 786446, 0, 131074 )
+
+[node name="PlatformTile" parent="Tiles/PlatformGenerator" index="0"]
+tile_data = PoolIntArray( -1572860, 0, 0, -1572859, 0, 0, -1572858, 0, 0, -1507323, 0, 0, -1114104, 0, 0, -1114103, 0, 0, -1114102, 0, 0, -1114101, 0, 0, -1114100, 0, 0, -917496, 0, 0, -917495, 0, 0, -917494, 0, 0, -917493, 0, 0, -917492, 0, 0, -655352, 0, 0, -655351, 0, 0, -393208, 0, 0, -327672, 0, 0, -262136, 0, 0, 262145, 0, 0, 262146, 0, 0, 327681, 0, 0, 327682, 0, 0, 524291, 0, 0, 524292, 0, 0, 524297, 0, 0 )
+
+[node name="Spikes" parent="Tiles" index="2"]
+tile_data = PoolIntArray( 196617, 0, 0, 196618, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0 )
+
+[node name="CameraFollow" parent="Players" index="0"]
+position = Vector2( 312, 48 )
+
+[node name="Jeff" parent="Players" index="1"]
+position = Vector2( 260, 120 )
+
+[node name="Jack" parent="Players" index="2"]
+position = Vector2( 189, 119 )
+
+[node name="Ed" parent="Players" index="3"]
+position = Vector2( 332, 120 )
+
+[node name="Label3" type="Label" parent="Objects" index="0"]
+margin_left = 8.0
+margin_top = 432.0
+margin_right = 102.0
+margin_bottom = 482.0
+theme = ExtResource( 10 )
+custom_fonts/font = ExtResource( 9 )
+text = "Grab on"
+align = 1
+
+[node name="PressurePlate3" parent="Objects" index="1" instance=ExtResource( 13 )]
+position = Vector2( 56, -312 )
+rotation = 2.30482e-07
+target_paths = [ NodePath("../WindCurrent4") ]
+start_active = true
+
+[node name="PressurePlate2" parent="Objects" index="2" instance=ExtResource( 13 )]
+position = Vector2( 56, -312 )
+rotation = 5.56363e-08
+target_paths = [ NodePath("../WindCurrent3"), NodePath("../WindCurrent8"), NodePath("../WindCurrent5"), NodePath("../WindCurrent3") ]
+
+[node name="PressurePlate" parent="Objects" index="3" instance=ExtResource( 13 )]
+position = Vector2( 56, -96 )
+rotation = 1.5708
+target_paths = [ NodePath("../WindCurrent2") ]
+
+[node name="PressurePlate4" parent="Objects" index="4" instance=ExtResource( 13 )]
+position = Vector2( 584, -904 )
+rotation = 4.71239
+target_paths = [ NodePath("../SlideDoor3") ]
+
+[node name="Button" parent="Objects" index="5" instance=ExtResource( 11 )]
+position = Vector2( 56, -936 )
+rotation = 1.5708
+target_paths = [ NodePath("../SlideDoor"), NodePath("../SlideDoor2") ]
+start_active = true
+
+[node name="WindCurrent3" parent="Objects" index="6" instance=ExtResource( 12 )]
+position = Vector2( 104, -520 )
+scale = Vector2( -1.96306, 1.66767 )
+z_index = -42
+
+[node name="WindCurrent4" parent="Objects" index="7" instance=ExtResource( 12 )]
+position = Vector2( 488, -1024 )
+rotation = 3.14159
+scale = Vector2( 2.64595, 2.06775 )
+z_index = -21
+wind_strength = -100.0
+
+[node name="WindCurrent6" parent="Objects" index="8" instance=ExtResource( 12 )]
+position = Vector2( 71.9999, -1240 )
+rotation = 4.11671
+scale = Vector2( 1.23796, -1.57606 )
+z_index = 7
+is_active = true
+
+[node name="WindCurrent5" parent="Objects" index="9" instance=ExtResource( 12 )]
+position = Vector2( 288, 144 )
+scale = Vector2( 6.48, 0.64 )
+z_index = -8
+
+[node name="WindCurrent8" parent="Objects" index="10" instance=ExtResource( 12 )]
+position = Vector2( 464, -488 )
+scale = Vector2( 1, 0.44 )
+z_index = -16
+
+[node name="WindCurrent2" parent="Objects" index="11" instance=ExtResource( 12 )]
+position = Vector2( 568, -56 )
+
+[node name="SlideDoor3" parent="Objects" index="12" instance=ExtResource( 14 )]
+position = Vector2( 352, -992 )
+rotation = 2.32965e-07
+scale = Vector2( 1.47031, 1.25342 )
+z_index = -24
+
+[node name="SlideDoor2" parent="Objects" index="13" instance=ExtResource( 14 )]
+position = Vector2( 304, -960 )
+rotation = -3.14159
+scale = Vector2( 1.4, 0.76 )
+z_index = -24
+
+[node name="SlideDoor" parent="Objects" index="14" instance=ExtResource( 14 )]
+position = Vector2( 272, -833 )
+rotation = 1.5708
+scale = Vector2( 1, 1.4 )
+z_index = -24
+move_direction = Vector2( 0, 128 )
+
+[node name="Movable" parent="Objects" index="15" instance=ExtResource( 3 )]
+position = Vector2( 584, 408 )
+
+[node name="Breakable" parent="Objects" index="16" instance=ExtResource( 4 )]
+position = Vector2( 80, -360 )
+scale = Vector2( 2.36, 1 )
+z_index = -9
+
+[node name="Breakable3" parent="Objects" index="17" instance=ExtResource( 4 )]
+position = Vector2( 280, -104 )
+scale = Vector2( 2.04154, 2.30462 )
+
+[node name="Breakable2" parent="Objects" index="18" instance=ExtResource( 4 )]
+position = Vector2( 560, -1304 )
+scale = Vector2( 2.04, 1 )
+
+[node name="Movable2" parent="Objects" index="19" instance=ExtResource( 3 )]
+position = Vector2( 528, -552 )
+
+[node name="Target3" parent="Objects" index="20" instance=ExtResource( 1 )]
+position = Vector2( 424, -864 )
+
+[node name="Swing" parent="Objects" index="21" instance=ExtResource( 5 )]
+position = Vector2( 592, -992 )
+swing_length = 64.0
+
+[node name="Swing4" parent="Objects" index="22" instance=ExtResource( 5 )]
+position = Vector2( 280, -168 )
+swing_length = 80.0
+
+[node name="Swing3" parent="Objects" index="23" instance=ExtResource( 5 )]
+position = Vector2( 296, -456 )
+swing_length = 100.0
+
+[node name="Swing2" parent="Objects" index="24" instance=ExtResource( 5 )]
+position = Vector2( 336, 256 )
+swing_length = 80.0
+
+[node name="Swing5" parent="Objects" index="25" instance=ExtResource( 5 )]
+position = Vector2( 64, -200 )
+swing_length = 100.0
+
+[node name="Movable4" parent="Objects" index="26" instance=ExtResource( 3 )]
+position = Vector2( 584, -72 )
+
+[node name="Movable3" parent="Objects" index="27" instance=ExtResource( 3 )]
+position = Vector2( 248, -936 )
+
+[node name="Door" parent="Objects" index="28" instance=ExtResource( 6 )]
+position = Vector2( 560, -1232 )
+next_level = ExtResource( 8 )

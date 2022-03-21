@@ -13,6 +13,8 @@ var is_swing:bool
 var is_switch:bool
 var _swing_target:Node2D
 var _switch_target:Node2D
+var is_shot_up:bool = false
+
 onready var _ed = get_tree().get_nodes_in_group("Ed")[0]
 onready var parent = get_parent()
 
@@ -23,7 +25,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if _ed.grabbed_body == parent:
-		parent.is_override_facing = true
+		parent.is_override_animation = true
+		if parent.anim_player.current_animation in ["walk", "jump", "fall"]:
+			parent.anim_player.play("idle")
 	
 	if is_swing:
 		parent.is_override_animation = true
@@ -83,12 +87,13 @@ func shoot():
 	shot_delay_timer.start()
 	yield(shot_delay_timer, "timeout")
 	gonna_shoot = false
-	
 	show()
 	arrow.is_active = true
 	arrow.dir = dir
 	arrow.rotation = atan2(dir.y, dir.x)
 	has_shot = true
+	if dir.y < 0:
+		is_shot_up = true
 
 
 func reset():
@@ -101,6 +106,7 @@ func reset():
 	is_switch = false
 	parent.is_override_animation = false
 	parent.is_override_facing = false
+	is_shot_up = false
 
 
 func _on_Arrow_hit_something(body:Node) -> void:
@@ -179,6 +185,10 @@ func pull_obj(body:Node2D) -> void:
 
 
 func _on_Tween_tween_all_completed() -> void:
-	reset()
 	var parent = get_parent()
-	parent.linear_velocity = Vector2.ZERO
+	if is_shot_up:
+		parent.linear_velocity.x = 0
+		parent.linear_velocity.y = -parent.jump_strength * 0.63
+	else:
+		parent.linear_velocity = Vector2.ZERO
+	reset()

@@ -22,6 +22,8 @@ var is_override_animation:bool = false
 var is_override_facing:bool = false
 
 var _platform:Node
+var _jump_frame:bool
+
 
 func _process(delta: float) -> void:
 	if is_controlled:
@@ -35,6 +37,7 @@ func _process(delta: float) -> void:
 		facing_dir.y = sign(input_vector.y)
 	
 	update_animation()
+	_jump_frame = false
 
 
 func update_animation():
@@ -67,7 +70,11 @@ func _physics_process(delta: float) -> void:
 	
 	for i in range(get_slide_count()):
 		if get_slide_collision(i).collider.is_in_group("Hazard"):
+			SoundManager.play_take_damage()
+			Transition.fade_out_with_pause()
+			yield(Transition, "fade_out_finished")
 			get_tree().reload_current_scene()
+			return
 	
 	late_update()
 
@@ -78,7 +85,9 @@ func late_update() -> void:
 
 func jump() -> void:
 	linear_velocity.y = -jump_strength
-	SoundManager.play_jump()
+	if !_jump_frame:
+		SoundManager.play_jump()
+	_jump_frame = true
 
 
 func update_input_platformer(delta:float) -> void:

@@ -4,6 +4,7 @@ export(float) var firing_rate:float = 0.25
 export(Vector2) var dir:Vector2 = Vector2(-1, 0)
 export(float) var speed:float = 300
 export(bool) var is_up:bool = false
+export(float) var volume:float = -12
 
 onready var timer = $Timer
 onready var anim_player = $AnimationPlayer
@@ -15,6 +16,7 @@ var cannonball_scene = preload("res://world/objects/_internal/CannonBall.tscn")
 func _ready() -> void:
 	timer.wait_time = 1.0/firing_rate
 	timer.start()
+	$AudioStreamPlayer.volume_db = volume
 
 
 func _on_Timer_timeout() -> void:

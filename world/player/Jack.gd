@@ -15,11 +15,6 @@ func _process(delta: float) -> void:
 	if _rock:
 		_rock.modulate = modulate
 	
-	if _ed.grabbed_body == self:
-		is_override_facing = true
-	else:
-		is_override_facing = false
-	
 	if is_controlled and Input.is_action_just_pressed("jump"):
 		if _ed.grabbed_body == self:
 			_ed.grabbed_body = null
@@ -31,7 +26,7 @@ func _process(delta: float) -> void:
 		if !is_rock:
 			_rock = slime_rock_scene.instance()
 			_rock.add_collision_exception_with(self)
-			_rock.linear_velocity = Vector2(0, 128)
+			_rock.linear_velocity = Vector2(0, 800)
 			get_parent().get_parent().add_child(_rock)
 			_rock.global_position = global_position
 			

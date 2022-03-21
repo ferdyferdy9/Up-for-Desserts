@@ -16,5 +16,8 @@ func _physics_process(delta: float) -> void:
 		hit_obj.global_position = global_position
 		
 		if collision.collider.is_in_group("Player"):
+			SoundManager.play_take_damage()
+			Transition.fade_out_with_pause()
+			yield(Transition, "fade_out_finished")
 			get_tree().reload_current_scene()
 		queue_free()

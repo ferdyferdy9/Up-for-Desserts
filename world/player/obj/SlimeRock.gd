@@ -59,7 +59,7 @@ func update_physics_platformer(delta:float) -> void:
 		_first_frame = false
 	
 	if custom_is_on_floor() and custom_is_on_floor() != _last_floor:
-		$Ground.play()
+		SoundManager.play_slime_drop_sfx()
 	
 	_last_floor = custom_is_on_floor()
 

@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://world/player/obj/SlimeRock.gd" type="Script" id=1]
 [ext_resource path="res://assets/characters/slime-stone_0000.png" type="Texture" id=2]
 [ext_resource path="res://assets/characters/slime-stone_0001.png" type="Texture" id=3]
 [ext_resource path="res://assets/characters/slime-stand.png" type="Texture" id=4]
-[ext_resource path="res://assets/sfx/slime rock hit ground.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/sfx/slime to stone.ogg" type="AudioStream" id=6]
 [ext_resource path="res://world/util/Area2DPlus.gd" type="Script" id=7]
 
@@ -300,10 +299,6 @@ process_material = SubResource( 4 )
 wait_time = 0.2
 one_shot = true
 autostart = true
-
-[node name="Ground" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-bus = "SFX"
 
 [node name="Transform" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )

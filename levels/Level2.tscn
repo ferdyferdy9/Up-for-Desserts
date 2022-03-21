@@ -19,31 +19,16 @@ margin_right = 40.0
 margin_bottom = 40.0
 theme = ExtResource( 10 )
 
-[node name="Label" type="Label" parent="Control" index="0"]
-margin_left = 6.0
-margin_top = 53.0
-margin_right = 230.0
-margin_bottom = 83.0
-text = "Press X to Shoot"
-
-[node name="Label2" type="Label" parent="Control" index="1"]
-margin_left = 7.0
+[node name="Label2" type="Label" parent="Control" index="0"]
+margin_left = 20.0
 margin_top = 303.0
-margin_right = 231.0
-margin_bottom = 333.0
-text = "Press X to Grab"
-
-[node name="Label3" type="Label" parent="Control" index="2"]
-margin_left = 403.0
-margin_top = 8.0
-margin_right = 627.0
-margin_bottom = 74.0
+margin_right = 244.0
+margin_bottom = 353.0
 custom_fonts/font = ExtResource( 9 )
-text = "Press X to Turn
-Into a Rock"
-align = 2
+text = "Press X to perform
+an action"
 
-[node name="Label4" type="Label" parent="Control" index="3"]
+[node name="Label4" type="Label" parent="Control" index="1"]
 margin_left = 224.0
 margin_top = 445.0
 margin_right = 626.0
