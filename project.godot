@@ -34,7 +34,10 @@ _global_script_class_icons={
 
 config/name="Up for Desserts"
 run/main_scene="res://Title.tscn"
+boot_splash/image="res://icon.png"
+boot_splash/fullsize=false
 config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
